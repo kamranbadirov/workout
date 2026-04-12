@@ -148,6 +148,19 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(doneState));
       }
 
+      function loadCustom(slug) {
+        return JSON.parse(
+          localStorage.getItem(`${CONFIG.bodyPart}-custom-${slug}`) || "[]",
+        );
+      }
+
+      function saveCustom(slug, arr) {
+        localStorage.setItem(
+          `${CONFIG.bodyPart}-custom-${slug}`,
+          JSON.stringify(arr),
+        );
+      }
+
       function getAutoSlot() {
         const h = new Date().getHours();
         for (const [slug, s] of Object.entries(SLOTS)) {
@@ -197,26 +210,89 @@
         updateProgress(slug);
       }
 
-      function renderExercises(slug) {
-        const s = SLOTS[slug];
-        document.getElementById("exercise-list").innerHTML = s.exercises
-          .map((ex, i) => {
-            const key = slug + "-" + i;
-            const isDone = !!doneState[key];
-            return `
+      function exBlock(slug, key, displayNum, ex, isCustom) {
+        const isDone = !!doneState[key];
+        const deleteBtn = isCustom
+          ? `<button class="ex-delete-btn" onclick="event.stopPropagation();deleteCustom('${slug}',${parseInt(key.split("-c")[1])})" aria-label="remove">×</button>`
+          : "";
+        return `
         <div class="block">
-          <div class="ex ${isDone ? "done" : ""}" id="ex-${key}">
+          <div class="ex${isDone ? " done" : ""}${isCustom ? " ex-custom" : ""}" id="ex-${key}">
             <div class="ex-head" onclick="toggleDone('${key}')">
-              <span class="ex-num">${String(i + 1).padStart(2, "0")}</span>
+              <span class="ex-num">${String(displayNum).padStart(2, "0")}</span>
               <span class="ex-name">${ex.name}</span>
               <span class="ex-spec">${ex.spec}</span>
+              ${deleteBtn}
               <button class="ex-done-btn" aria-label="mark done">✓</button>
             </div>
             ${ex.notes ? `<div class="ex-notes">${ex.notes}</div>` : ""}
           </div>
         </div>`;
-          })
+      }
+
+      function renderExercises(slug) {
+        const builtin = SLOTS[slug].exercises;
+        const custom = loadCustom(slug);
+
+        let html = builtin
+          .map((ex, i) => exBlock(slug, `${slug}-${i}`, i + 1, ex, false))
           .join("");
+
+        html += custom
+          .map((ex, i) =>
+            exBlock(
+              slug,
+              `${slug}-c${i}`,
+              builtin.length + i + 1,
+              ex,
+              true,
+            ),
+          )
+          .join("");
+
+        html += `<div id="add-ex-wrap"><button class="add-ex-btn" onclick="showAddForm('${slug}')">+ add exercise</button></div>`;
+
+        document.getElementById("exercise-list").innerHTML = html;
+      }
+
+      function showAddForm(slug) {
+        document.getElementById("add-ex-wrap").innerHTML = `
+          <div class="add-ex-form">
+            <input id="add-ex-name" class="add-ex-input" placeholder="exercise name" autocomplete="off"
+              onkeydown="if(event.key==='Enter')document.getElementById('add-ex-spec').focus()" />
+            <input id="add-ex-spec" class="add-ex-input" placeholder="sets × reps" autocomplete="off"
+              onkeydown="if(event.key==='Enter')confirmAddEx('${slug}')" />
+            <div class="add-ex-actions">
+              <button class="add-ex-cancel" onclick="renderExercises('${slug}')">cancel</button>
+              <button class="add-ex-confirm" onclick="confirmAddEx('${slug}')">add</button>
+            </div>
+          </div>`;
+        document.getElementById("add-ex-name").focus();
+      }
+
+      function confirmAddEx(slug) {
+        const name = document.getElementById("add-ex-name").value.trim();
+        const spec = document.getElementById("add-ex-spec").value.trim();
+        if (!name) return;
+        const custom = loadCustom(slug);
+        custom.push({ name, spec: spec || "—" });
+        saveCustom(slug, custom);
+        renderExercises(slug);
+        updateProgress(slug);
+      }
+
+      function deleteCustom(slug, i) {
+        const custom = loadCustom(slug);
+        // shift done states down for indices above the deleted one
+        custom.forEach((_, idx) => {
+          if (idx > i) doneState[`${slug}-c${idx - 1}`] = !!doneState[`${slug}-c${idx}`];
+          if (idx === custom.length - 1) delete doneState[`${slug}-c${idx}`];
+        });
+        custom.splice(i, 1);
+        saveCustom(slug, custom);
+        saveDoneState();
+        renderExercises(slug);
+        updateProgress(slug);
       }
 
       function renderAvoid(slug) {
@@ -241,11 +317,12 @@
       }
 
       function updateProgress(slug) {
-        const s = SLOTS[slug];
-        const total = s.exercises.length;
-        const done = s.exercises.filter(
-          (_, i) => doneState[slug + "-" + i],
-        ).length;
+        const builtin = SLOTS[slug].exercises;
+        const custom = loadCustom(slug);
+        const total = builtin.length + custom.length;
+        const done =
+          builtin.filter((_, i) => doneState[`${slug}-${i}`]).length +
+          custom.filter((_, i) => doneState[`${slug}-c${i}`]).length;
         const pct = total ? (done / total) * 100 : 0;
         document.getElementById("prog-fill").style.width = pct + "%";
         document.getElementById("prog-text").textContent = `${done} / ${total} done`;
@@ -253,10 +330,10 @@
 
       function resetDone() {
         if (!currentSlot) return;
-        const s = SLOTS[currentSlot];
-        s.exercises.forEach((_, i) => {
-          delete doneState[currentSlot + "-" + i];
-        });
+        const builtin = SLOTS[currentSlot].exercises;
+        const custom = loadCustom(currentSlot);
+        builtin.forEach((_, i) => delete doneState[`${currentSlot}-${i}`]);
+        custom.forEach((_, i) => delete doneState[`${currentSlot}-c${i}`]);
         saveDoneState();
         renderExercises(currentSlot);
         updateProgress(currentSlot);

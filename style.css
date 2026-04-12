@@ -203,6 +203,124 @@ header {
   letter-spacing: 0.02em;
 }
 
+.ex-custom {
+  border-left: 2px solid var(--muted);
+}
+
+.ex-delete-btn {
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 14px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+  padding: 0;
+  transition: all 0.15s;
+}
+
+.ex-delete-btn:hover {
+  color: var(--warn);
+  opacity: 1;
+}
+
+/* ADD EXERCISE */
+.add-ex-btn {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+  background: none;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.add-ex-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.add-ex-form {
+  margin-top: 6px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-ex-input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  padding: 6px 0;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.add-ex-input:focus {
+  border-bottom-color: var(--accent);
+}
+
+.add-ex-input::placeholder {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.add-ex-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.add-ex-confirm {
+  padding: 6px 16px;
+  background: var(--accent);
+  color: #0a0a0a;
+  border: none;
+  border-radius: 4px;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+
+.add-ex-cancel {
+  padding: 6px 16px;
+  background: none;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: color 0.15s;
+}
+
+.add-ex-cancel:hover {
+  color: var(--text);
+}
+
 /* AVOID SECTION */
 .avoid-block {
   margin-top: 24px;
