@@ -222,6 +222,32 @@ header {
   border-left: 2px solid var(--accent);
 }
 
+/* DRAG */
+.drag-handle {
+  font-size: 13px;
+  color: var(--muted);
+  opacity: 0.35;
+  cursor: grab;
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+  touch-action: none;
+  user-select: none;
+  transition: opacity 0.15s;
+}
+
+.ex-head:hover .drag-handle {
+  opacity: 0.8;
+}
+
+.block.dragging {
+  opacity: 0.35;
+}
+
+.block.drag-over .ex {
+  border-color: var(--accent);
+}
+
 .ex-custom {
   border-left: 2px solid var(--muted);
 }
