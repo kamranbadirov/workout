@@ -46,9 +46,9 @@ header {
 
 .logo {
   font-family: "Syne", sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
-  letter-spacing: -0.5px;
+  letter-spacing: 0.2em;
   color: var(--accent);
 }
 
