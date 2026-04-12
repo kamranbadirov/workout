@@ -3,37 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> KINETIC</title>
+    <title>KINETIC</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="landing">
     <header>
-      <div class="logo" id="app-title"> KINETIC</div>
+      <div class="logo">KINETIC</div>
       <div id="clock">--:--</div>
     </header>
 
     <div class="container">
-      <div class="slot-label" id="slot-label">detecting slot...</div>
-      <div class="slot-title" id="slot-title">—</div>
-
-      <div class="tabs" id="tab-container"></div>
-
-      <div class="progress-wrap">
-        <div class="progress-bar">
-          <div class="progress-fill" id="prog-fill" style="width: 0%"></div>
-        </div>
-        <div class="progress-text" id="prog-text">0 / 0 done</div>
+      <div class="landing-cards">
+        <a href="premade.html" class="landing-card">
+          <!-- <div class="card-eyebrow">PREMADE</div> -->
+          <div class="card-title">Premade</div>
+          <div class="card-desc">Follow the plan.</div>
+          <span class="card-arrow">→</span>
+        </a>
+        <a href="builder.html" class="landing-card">
+          <!-- <div class="card-eyebrow">BUILD</div> -->
+          <div class="card-title">Custom</div>
+          <div class="card-desc">Mix &amp; match your own.</div>
+          <span class="card-arrow">→</span>
+        </a>
       </div>
-
-      <div id="exercise-list"></div>
-
-      <div id="avoid-section"></div>
-
-      <div class="signal" id="signal-section"></div>
-
-      <button class="reset-btn" onclick="resetDone()">↺ reset session</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+      function updateClock() {
+        var now = new Date();
+        document.getElementById("clock").textContent =
+          String(now.getHours()).padStart(2, "0") + ":" +
+          String(now.getMinutes()).padStart(2, "0");
+      }
+      updateClock();
+      setInterval(updateClock, 10000);
+    </script>
   </body>
 </html>

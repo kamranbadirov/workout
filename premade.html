@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> KINETIC</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html" class="back-btn">←</a>
+      <div class="logo" id="app-title"> KINETIC</div>
+      <div id="clock">--:--</div>
+    </header>
+
+    <div class="container">
+      <div class="slot-label" id="slot-label">detecting slot...</div>
+      <div class="slot-title" id="slot-title">—</div>
+
+      <div class="tabs" id="tab-container"></div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div class="progress-fill" id="prog-fill" style="width: 0%"></div>
+        </div>
+        <div class="progress-text" id="prog-text">0 / 0 done</div>
+      </div>
+
+      <div id="exercise-list"></div>
+
+      <div id="avoid-section"></div>
+
+      <div class="signal" id="signal-section"></div>
+
+      <button class="reset-btn" onclick="resetDone()">↺ reset session</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
