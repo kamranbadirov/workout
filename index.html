@@ -1,179 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Knee — Now</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knee — Now</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">KNEE / NOW</div>
+      <div id="clock">--:--</div>
+    </header>
 
-</head>
-<body>
+    <div class="container">
+      <div class="slot-label" id="slot-label">detecting slot...</div>
+      <div class="slot-title" id="slot-title">—</div>
 
-<header>
-  <div class="logo">KNEE / NOW</div>
-  <div id="clock">--:--</div>
-</header>
+      <div class="tabs">
+        <div class="tab" data-slot="morning" onclick="setSlot('morning')">
+          07:30 Morning
+        </div>
+        <div class="tab" data-slot="rehab-a" onclick="setSlot('rehab-a')">
+          Rehab A
+        </div>
+        <div class="tab" data-slot="leg-day" onclick="setSlot('leg-day')">
+          Leg Day B
+        </div>
+      </div>
 
-<div class="container">
-  <div class="slot-label" id="slot-label">detecting slot...</div>
-  <div class="slot-title" id="slot-title">—</div>
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div class="progress-fill" id="prog-fill" style="width: 0%"></div>
+        </div>
+        <div class="progress-text" id="prog-text">0 / 0 done</div>
+      </div>
 
-  <div class="tabs">
-    <div class="tab" data-slot="morning" onclick="setSlot('morning')">07:30 Morning</div>
-    <div class="tab" data-slot="rehab-a" onclick="setSlot('rehab-a')">Rehab A</div>
-    <div class="tab" data-slot="leg-day" onclick="setSlot('leg-day')">Leg Day B</div>
-  </div>
+      <div id="exercise-list"></div>
 
-  <div class="progress-wrap">
-    <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
-    <div class="progress-text" id="prog-text">0 / 0 done</div>
-  </div>
+      <div id="avoid-section"></div>
 
-  <div id="exercise-list"></div>
+      <div class="signal">
+        <div class="signal-item">
+          <strong>Stop if</strong>Sharp anterior pain
+        </div>
+        <div class="signal-item">
+          <strong>Stop if</strong>Swelling next day ↑
+        </div>
+        <div class="signal-item"><strong>Ice after</strong>10–15 min</div>
+      </div>
 
-  <div id="avoid-section"></div>
+      <button class="reset-btn" onclick="resetDone()">↺ reset session</button>
+    </div>
 
-  <div class="signal">
-    <div class="signal-item"><strong>Stop if</strong>Sharp anterior pain</div>
-    <div class="signal-item"><strong>Stop if</strong>Swelling next day ↑</div>
-    <div class="signal-item"><strong>Ice after</strong>10–15 min</div>
-  </div>
+    <script>
+      const SLOTS = {
+        morning: {
+          label: "Morning / Daily",
+          title: "Morning Routine",
+          exercises: [
+            { name: "Pushups", spec: "3 × max" },
+            { name: "Pull-ups", spec: "3 × max" },
+            { name: "Plank", spec: "3 × 30–60s" },
+            { name: "Neck work", spec: "2 × 10 each" },
+            { name: "Quad Sets", spec: "2 × 10 · 5s hold" },
+            { name: "Light TKE (band)", spec: "2 × 15" },
+          ],
+          avoid: [
+            "Explosive movements",
+            "Deep knee bending (joint stiff early AM)",
+          ],
+        },
+        "rehab-a": {
+          label: "Rehab A — 3×/week",
+          title: "Rehab A",
+          exercises: [
+            { name: "Quad Sets", spec: "3×10 · 5–10s hold" },
+            { name: "TKE (band)", spec: "3×12–15 · slow lockout" },
+            { name: "Straight Leg Raises", spec: "3×10–12 · 2s up/down" },
+            { name: "Glute Bridge", spec: "3×12–15 · 2s squeeze" },
+            { name: "Side-Lying Hip Abduction", spec: "2–3×12–15" },
+          ],
+          avoid: [],
+        },
+        "leg-day": {
+          label: "Leg Day — Rehab B",
+          title: "Leg Day B",
+          exercises: [
+            { name: "Shallow Wall Sit", spec: "4×20–30s · 30–45° only" },
+            { name: "Step-Ups (low)", spec: "3×8–10 / leg · no push-off" },
+            { name: "Romanian Deadlift", spec: "3×8–10 · hip-dominant" },
+            { name: "Hamstring Curl", spec: "3×10–12" },
+            { name: "Calf Raises", spec: "3×12–15" },
+          ],
+          avoid: [
+            "Deep squats",
+            "Lunges past ~60°",
+            "Heavy/full-range leg extensions",
+            "Slant board / knees-over-toes",
+          ],
+        },
+      };
 
-  <button class="reset-btn" onclick="resetDone()">↺ reset session</button>
-</div>
+      let currentSlot = null;
+      let doneState = {};
 
-<script>
-const SLOTS = {
-  'morning': {
-    label: 'Morning / Daily',
-    title: 'Morning Routine',
-    exercises: [
-      { name: 'Pushups',      spec: '3 × max'     },
-      { name: 'Pull-ups',     spec: '3 × max'     },
-      { name: 'Plank',        spec: '3 × 30–60s'  },
-      { name: 'Neck work',    spec: '2 × 10 each' },
-      { name: 'Quad Sets',    spec: '2 × 10 · 5s hold' },
-      { name: 'Light TKE (band)', spec: '2 × 15' },
-    ],
-    avoid: ['Explosive movements', 'Deep knee bending (joint stiff early AM)']
-  },
-  'rehab-a': {
-    label: 'Rehab A — 3×/week',
-    title: 'Rehab A',
-    exercises: [
-      { name: 'Quad Sets',              spec: '3×10 · 5–10s hold' },
-      { name: 'TKE (band)',             spec: '3×12–15 · slow lockout' },
-      { name: 'Straight Leg Raises',    spec: '3×10–12 · 2s up/down' },
-      { name: 'Glute Bridge',           spec: '3×12–15 · 2s squeeze' },
-      { name: 'Side-Lying Hip Abduction', spec: '2–3×12–15' },
-    ],
-    avoid: []
-  },
-  'leg-day': {
-    label: 'Leg Day — Rehab B',
-    title: 'Leg Day B',
-    exercises: [
-      { name: 'Shallow Wall Sit',    spec: '4×20–30s · 30–45° only' },
-      { name: 'Step-Ups (low)',      spec: '3×8–10 / leg · no push-off' },
-      { name: 'Romanian Deadlift',   spec: '3×8–10 · hip-dominant' },
-      { name: 'Hamstring Curl',      spec: '3×10–12' },
-      { name: 'Calf Raises',         spec: '3×12–15' },
-    ],
-    avoid: ['Deep squats', 'Lunges past ~60°', 'Heavy/full-range leg extensions', 'Slant board / knees-over-toes']
-  }
-};
+      function getAutoSlot() {
+        const h = new Date().getHours();
+        if (h < 10) return "morning";
+        if (h < 14) return "rehab-a";
+        return "rehab-a"; // default evening → Rehab A (most common)
+      }
 
-let currentSlot = null;
-let doneState = {};
+      function setSlot(slug) {
+        currentSlot = slug;
+        const s = SLOTS[slug];
+        document.getElementById("slot-label").textContent = s.label;
+        document.getElementById("slot-title").textContent = s.title;
 
-function getAutoSlot() {
-  const h = new Date().getHours();
-  if (h < 10) return 'morning';
-  if (h < 14) return 'rehab-a';
-  return 'rehab-a'; // default evening → Rehab A (most common)
-}
+        // tabs
+        document.querySelectorAll(".tab").forEach((t) => {
+          t.classList.toggle("active", t.dataset.slot === slug);
+        });
 
-function setSlot(slug) {
-  currentSlot = slug;
-  const s = SLOTS[slug];
-  document.getElementById('slot-label').textContent = s.label;
-  document.getElementById('slot-title').textContent = s.title;
+        renderExercises(slug);
+        renderAvoid(slug);
+        updateProgress(slug);
+      }
 
-  // tabs
-  document.querySelectorAll('.tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.slot === slug);
-  });
-
-  renderExercises(slug);
-  renderAvoid(slug);
-  updateProgress(slug);
-}
-
-function renderExercises(slug) {
-  const s = SLOTS[slug];
-  const el = document.getElementById('exercise-list');
-  el.innerHTML = '';
-  s.exercises.forEach((ex, i) => {
-    const key = slug + '-' + i;
-    const isDone = !!doneState[key];
-    el.innerHTML += `
+      function renderExercises(slug) {
+        const s = SLOTS[slug];
+        const el = document.getElementById("exercise-list");
+        el.innerHTML = "";
+        s.exercises.forEach((ex, i) => {
+          const key = slug + "-" + i;
+          const isDone = !!doneState[key];
+          el.innerHTML += `
       <div class="block">
-        <div class="ex ${isDone ? 'done' : ''}" id="ex-${key}">
+        <div class="ex ${isDone ? "done" : ""}" id="ex-${key}">
           <div class="ex-head" onclick="toggleDone('${key}')">
-            <span class="ex-num">${String(i+1).padStart(2,'0')}</span>
+            <span class="ex-num">${String(i + 1).padStart(2, "0")}</span>
             <span class="ex-name">${ex.name}</span>
             <span class="ex-spec">${ex.spec}</span>
             <button class="ex-done-btn" aria-label="mark done">✓</button>
           </div>
         </div>
       </div>`;
-  });
-}
+        });
+      }
 
-function renderAvoid(slug) {
-  const s = SLOTS[slug];
-  const el = document.getElementById('avoid-section');
-  if (!s.avoid.length) { el.innerHTML = ''; return; }
-  el.innerHTML = `<div class="avoid-block">
+      function renderAvoid(slug) {
+        const s = SLOTS[slug];
+        const el = document.getElementById("avoid-section");
+        if (!s.avoid.length) {
+          el.innerHTML = "";
+          return;
+        }
+        el.innerHTML = `<div class="avoid-block">
     <div class="avoid-label">avoid today</div>
-    ${s.avoid.map(a => `<div class="avoid-item">${a}</div>`).join('')}
+    ${s.avoid.map((a) => `<div class="avoid-item">${a}</div>`).join("")}
   </div>`;
-}
+      }
 
-function toggleDone(key) {
-  doneState[key] = !doneState[key];
-  const exEl = document.getElementById('ex-' + key);
-  exEl.classList.toggle('done', doneState[key]);
-  updateProgress(currentSlot);
-}
+      function toggleDone(key) {
+        doneState[key] = !doneState[key];
+        const exEl = document.getElementById("ex-" + key);
+        exEl.classList.toggle("done", doneState[key]);
+        updateProgress(currentSlot);
+      }
 
-function updateProgress(slug) {
-  const s = SLOTS[slug];
-  const total = s.exercises.length;
-  const done = s.exercises.filter((_, i) => doneState[slug + '-' + i]).length;
-  const pct = total ? (done / total * 100) : 0;
-  document.getElementById('prog-fill').style.width = pct + '%';
-  document.getElementById('prog-text').textContent = `${done} / ${total} done`;
-}
+      function updateProgress(slug) {
+        const s = SLOTS[slug];
+        const total = s.exercises.length;
+        const done = s.exercises.filter(
+          (_, i) => doneState[slug + "-" + i],
+        ).length;
+        const pct = total ? (done / total) * 100 : 0;
+        document.getElementById("prog-fill").style.width = pct + "%";
+        document.getElementById("prog-text").textContent =
+          `${done} / ${total} done`;
+      }
 
-function resetDone() {
-  if (!currentSlot) return;
-  const s = SLOTS[currentSlot];
-  s.exercises.forEach((_, i) => { delete doneState[currentSlot + '-' + i]; });
-  renderExercises(currentSlot);
-  updateProgress(currentSlot);
-}
+      function resetDone() {
+        if (!currentSlot) return;
+        const s = SLOTS[currentSlot];
+        s.exercises.forEach((_, i) => {
+          delete doneState[currentSlot + "-" + i];
+        });
+        renderExercises(currentSlot);
+        updateProgress(currentSlot);
+      }
 
-function updateClock() {
-  const now = new Date();
-  const h = String(now.getHours()).padStart(2,'0');
-  const m = String(now.getMinutes()).padStart(2,'0');
-  document.getElementById('clock').textContent = h + ':' + m;
-}
+      function updateClock() {
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, "0");
+        const m = String(now.getMinutes()).padStart(2, "0");
+        document.getElementById("clock").textContent = h + ":" + m;
+      }
 
-// Init
-updateClock();
-setInterval(updateClock, 10000);
-setSlot(getAutoSlot());
-</script>
-</body>
+      // Init
+      updateClock();
+      setInterval(updateClock, 10000);
+      setSlot(getAutoSlot());
+    </script>
+  </body>
 </html>
