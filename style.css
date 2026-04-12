@@ -225,8 +225,8 @@ header {
 /* DRAG */
 .drag-handle {
   font-size: 13px;
-  color: var(--muted);
-  opacity: 0.35;
+  color: var(--text);
+  opacity: 0.7;
   cursor: grab;
   flex-shrink: 0;
   width: 16px;
@@ -237,7 +237,7 @@ header {
 }
 
 .ex-head:hover .drag-handle {
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .block.dragging {
