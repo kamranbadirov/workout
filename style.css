@@ -340,6 +340,20 @@ header {
   color: var(--text);
 }
 
+.hidden-note {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 12px 0 4px;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.hidden-note:hover {
+  color: var(--accent);
+}
+
 /* AVOID SECTION */
 .avoid-block {
   margin-top: 24px;

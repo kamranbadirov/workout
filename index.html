@@ -266,6 +266,19 @@
         );
       }
 
+      function loadRemoved(slug) {
+        return new Set(
+          JSON.parse(localStorage.getItem(`${CONFIG.bodyPart}-removed-${slug}`) || "[]"),
+        );
+      }
+
+      function saveRemoved(slug, set) {
+        localStorage.setItem(
+          `${CONFIG.bodyPart}-removed-${slug}`,
+          JSON.stringify([...set]),
+        );
+      }
+
       // Returns flat array of all built-in exercises for a slot
       function flatBuiltin(slug) {
         const s = SLOTS[slug];
@@ -307,11 +320,12 @@
           .join("");
       }
 
-      function exBlock(slug, key, displayNum, ex, isCustom, isRehab) {
+      // builtinIdx is the flat index in the original SLOTS array; defined only for built-in exercises
+      function exBlock(slug, key, displayNum, ex, isCustom, isRehab, builtinIdx) {
         const isDone = !!doneState[key];
         const deleteBtn = isCustom
           ? `<button class="ex-delete-btn" onclick="event.stopPropagation();deleteCustom('${slug}',${parseInt(key.split("-c")[1])})" aria-label="remove">×</button>`
-          : "";
+          : `<button class="ex-delete-btn" onclick="event.stopPropagation();removeBuiltin('${slug}',${builtinIdx})" aria-label="remove">×</button>`;
         const classes = [
           "ex",
           isDone   ? "done"      : "",
@@ -335,32 +349,48 @@
       }
 
       function renderExercises(slug) {
-        const s = SLOTS[slug];
-        const custom = loadCustom(slug);
-        let html = "";
-        let flatIdx = 0;
+        const s       = SLOTS[slug];
+        const custom  = loadCustom(slug);
+        const removed = loadRemoved(slug);
+        let html      = "";
+        let flatIdx   = 0;
+        let displayNum = 1;
+        let firstSection = true;
 
         if (s.sections) {
-          s.sections.forEach((sec, si) => {
-            html += `<div class="section-header${si === 0 ? " first" : ""}">${sec.name}</div>`;
+          s.sections.forEach((sec) => {
+            let secHtml = "";
             sec.exercises.forEach((ex) => {
-              html += exBlock(slug, `${slug}-${flatIdx}`, flatIdx + 1, ex, false, !!sec.isRehab);
+              if (!removed.has(flatIdx)) {
+                secHtml += exBlock(slug, `${slug}-${flatIdx}`, displayNum++, ex, false, !!sec.isRehab, flatIdx);
+              }
               flatIdx++;
             });
+            if (secHtml) {
+              html += `<div class="section-header${firstSection ? " first" : ""}">${sec.name}</div>`;
+              html += secHtml;
+              firstSection = false;
+            }
           });
         } else {
           s.exercises.forEach((ex) => {
-            html += exBlock(slug, `${slug}-${flatIdx}`, flatIdx + 1, ex, false, false);
+            if (!removed.has(flatIdx)) {
+              html += exBlock(slug, `${slug}-${flatIdx}`, displayNum++, ex, false, false, flatIdx);
+            }
             flatIdx++;
           });
         }
 
         const totalBuiltin = flatIdx;
         if (custom.length) {
-          html += `<div class="section-header">CUSTOM</div>`;
+          html += `<div class="section-header${firstSection ? " first" : ""}">CUSTOM</div>`;
           custom.forEach((ex, i) => {
-            html += exBlock(slug, `${slug}-c${i}`, totalBuiltin + i + 1, ex, true, false);
+            html += exBlock(slug, `${slug}-c${i}`, displayNum++, ex, true, false);
           });
+        }
+
+        if (removed.size > 0) {
+          html += `<div class="hidden-note" onclick="restoreBuiltin('${slug}')">${removed.size} hidden · restore all</div>`;
         }
 
         html += `<div id="add-ex-wrap"><button class="add-ex-btn" onclick="showAddForm('${slug}')">+ add exercise</button></div>`;
@@ -423,6 +453,22 @@
         updateProgress(slug);
       }
 
+      function removeBuiltin(slug, flatIdx) {
+        const removed = loadRemoved(slug);
+        removed.add(flatIdx);
+        delete doneState[`${slug}-${flatIdx}`];
+        saveDoneState();
+        saveRemoved(slug, removed);
+        renderExercises(slug);
+        updateProgress(slug);
+      }
+
+      function restoreBuiltin(slug) {
+        saveRemoved(slug, new Set());
+        renderExercises(slug);
+        updateProgress(slug);
+      }
+
       function deleteCustom(slug, i) {
         const custom = loadCustom(slug);
         custom.forEach((_, idx) => {
@@ -448,9 +494,11 @@
       function updateProgress(slug) {
         const builtin = flatBuiltin(slug);
         const custom  = loadCustom(slug);
-        const total   = builtin.length + custom.length;
+        const removed = loadRemoved(slug);
+        const total   =
+          builtin.filter((_, i) => !removed.has(i)).length + custom.length;
         const done    =
-          builtin.filter((_, i) => doneState[`${slug}-${i}`]).length +
+          builtin.filter((_, i) => !removed.has(i) && doneState[`${slug}-${i}`]).length +
           custom.filter((_, i) => doneState[`${slug}-c${i}`]).length;
         const pct = total ? (done / total) * 100 : 0;
         document.getElementById("prog-fill").style.width = pct + "%";
@@ -461,7 +509,8 @@
         if (!currentSlot) return;
         const builtin = flatBuiltin(currentSlot);
         const custom  = loadCustom(currentSlot);
-        builtin.forEach((_, i) => delete doneState[`${currentSlot}-${i}`]);
+        const removed = loadRemoved(currentSlot);
+        builtin.forEach((_, i) => { if (!removed.has(i)) delete doneState[`${currentSlot}-${i}`]; });
         custom.forEach((_, i)  => delete doneState[`${currentSlot}-c${i}`]);
         saveDoneState();
         renderExercises(currentSlot);
