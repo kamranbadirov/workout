@@ -45,99 +45,204 @@
         ],
       };
 
+      // Rehab exercise blocks reused across days
+      const REHAB_A = {
+        name: "REHAB A",
+        isRehab: true,
+        exercises: [
+          { name: "Quad Sets",               spec: "3×10 · 5–10s hold",     notes: "Press back of knee into floor. No leg lift." },
+          { name: "TKE (band)",              spec: "3×12–15 · slow lockout", notes: "Slow, full lockout — avoid snapping into extension." },
+          { name: "Straight Leg Raises",     spec: "3×10–12 · 2s up/down",  notes: "Lock knee fully before lifting. Toes pointed up." },
+          { name: "Glute Bridge",            spec: "3×12–15 · 2s squeeze",  notes: "Drive through heels. Do not hyperextend lower back at top." },
+          { name: "Side-Lying Hip Abduction",spec: "2–3×12–15",             notes: "Keep pelvis stacked, do not rotate forward during lift." },
+        ],
+      };
+
+      const REHAB_B = {
+        name: "REHAB B",
+        isRehab: true,
+        exercises: [
+          { name: "Shallow Wall Sit",   spec: "4×20–30s · 30–45° only",  notes: "Back flat against wall. Stop at 45° — do not push past comfort." },
+          { name: "Step-Ups (low)",     spec: "3×8–10 / leg · no push-off", notes: "Lead leg only. No push-off from trailing foot." },
+          { name: "Romanian Deadlift",  spec: "3×8–10 · hip-dominant",    notes: "Hinge at hips, soft knee bend. Bar stays close to legs." },
+          { name: "Hamstring Curl",     spec: "3×10–12" },
+          { name: "Calf Raises",        spec: "3×12–15" },
+        ],
+      };
+
       const SLOTS = {
         morning: {
-          label: "Morning / Daily",
-          title: "Morning Routine",
+          label: "Daily",
+          title: "Morning",
           tabLabel: "Morning",
-          autoSlotHours: [0, 10],
+          autoSlotDays: null,
           exercises: [
-            { name: "Pushups", spec: "3 × max" },
-            { name: "Pull-ups", spec: "3 × max" },
-            { name: "Plank", spec: "3 × 30–60s" },
-            { name: "Neck work", spec: "2 × 10 each" },
-            {
-              name: "Quad Sets",
-              spec: "2 × 10 · 5s hold",
-              notes: "Press back of knee into floor. No leg lift.",
-            },
-            {
-              name: "Light TKE (band)",
-              spec: "2 × 15",
-              notes: "Slow, full lockout — avoid snapping into extension.",
-            },
+            { name: "Push-ups",        spec: "3 × max" },
+            { name: "Pull-ups",        spec: "3 × max" },
+            { name: "Plank",           spec: "3 × 30–60s" },
+            { name: "Neck Work",       spec: "2 × 10 each" },
+            { name: "Quad Sets",       spec: "2 × 10 · 5s hold", notes: "Press back of knee into floor. No leg lift." },
+            { name: "Light TKE (band)",spec: "2 × 15",           notes: "Slow, full lockout — avoid snapping into extension." },
           ],
           avoid: [
             "Explosive movements",
             "Deep knee bending (joint stiff early AM)",
           ],
         },
-        "rehab-a": {
-          label: "Rehab A — 3×/week",
-          title: "Rehab A",
-          tabLabel: "Rehab A",
-          autoSlotHours: [10, 24],
-          exercises: [
+
+        day1: {
+          label: "Chest · Triceps · Rehab A",
+          title: "Day 1",
+          tabLabel: "Day 1",
+          autoSlotDays: [1], // Monday
+          sections: [
             {
-              name: "Quad Sets",
-              spec: "3×10 · 5–10s hold",
-              notes: "Press back of knee into floor. No leg lift.",
+              name: "CHEST",
+              exercises: [
+                { name: "Bench Press",              spec: "4×6–8" },
+                { name: "Incline Bench Press",       spec: "3×8–10" },
+                { name: "Incline Dumbbell Press",    spec: "3×10–12" },
+                { name: "Cable Chest Fly",           spec: "3×12–15" },
+                { name: "Push-ups",                  spec: "2 × max" },
+              ],
             },
             {
-              name: "TKE (band)",
-              spec: "3×12–15 · slow lockout",
-              notes: "Slow, full lockout — avoid snapping into extension.",
+              name: "TRICEPS",
+              exercises: [
+                { name: "Dips",                             spec: "3×8–12" },
+                { name: "Triceps Pushdown (cable)",         spec: "3×12–15" },
+                { name: "Overhead Triceps Extension (DB)",  spec: "3×10–12" },
+              ],
             },
             {
-              name: "Straight Leg Raises",
-              spec: "3×10–12 · 2s up/down",
-              notes: "Lock knee fully before lifting. Toes pointed up.",
+              name: "ARMS",
+              exercises: [
+                { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
+                { name: "Hammer Curls",         spec: "3×10–12" },
+              ],
             },
-            {
-              name: "Glute Bridge",
-              spec: "3×12–15 · 2s squeeze",
-              notes: "Drive through heels. Do not hyperextend lower back at top.",
-            },
-            {
-              name: "Side-Lying Hip Abduction",
-              spec: "2–3×12–15",
-              notes: "Keep pelvis stacked, do not rotate forward during lift.",
-            },
+            REHAB_A,
           ],
           avoid: [],
         },
-        "leg-day": {
-          label: "Leg Day — Rehab B",
-          title: "Leg Day B",
-          tabLabel: "Leg Day B",
-          autoSlotHours: null,
-          exercises: [
+
+        day2: {
+          label: "Back · Biceps · Rehab A",
+          title: "Day 2",
+          tabLabel: "Day 2",
+          autoSlotDays: [2], // Tuesday
+          sections: [
             {
-              name: "Shallow Wall Sit",
-              spec: "4×20–30s · 30–45° only",
-              notes: "Back flat against wall. Stop at 45° — do not push past comfort.",
+              name: "BACK",
+              exercises: [
+                { name: "Pull-ups",           spec: "4 × max" },
+                { name: "Deadlift",           spec: "4×4–6" },
+                { name: "Dumbbell Rows",      spec: "3×8–10 / arm" },
+                { name: "Seated Cable Rows",  spec: "3×10–12" },
+                { name: "Machine Rows",       spec: "3×12–15" },
+                { name: "Face Pulls",         spec: "3×15–20" },
+                { name: "Shoulder Shrugs",    spec: "3×12–15" },
+              ],
             },
             {
-              name: "Step-Ups (low)",
-              spec: "3×8–10 / leg · no push-off",
-              notes: "Lead leg only. No push-off from trailing foot.",
+              name: "BICEPS",
+              exercises: [
+                { name: "Machine Bicep Curls",  spec: "3×10–12" },
+                { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
+                { name: "Hammer Curls",         spec: "3×10–12" },
+              ],
+            },
+            REHAB_A,
+          ],
+          avoid: [],
+        },
+
+        day3: {
+          label: "Legs · ABS · Rehab B",
+          title: "Day 3",
+          tabLabel: "Day 3",
+          autoSlotDays: [3], // Wednesday
+          sections: [
+            {
+              name: "LEGS",
+              exercises: [
+                { name: "Squat",                  spec: "4×6–8" },
+                { name: "Seated Leg Press",       spec: "3×10–12 · moderate depth" },
+                { name: "Incline Leg Press (45°)",spec: "3×10–12" },
+                {
+                  name: "Leg Extension",
+                  spec: "3×12–15 · light · partial",
+                  notes: "Light weight only. Stop short of full extension — protect fat pad.",
+                },
+                { name: "Calf Raises",            spec: "4×15–20" },
+                { name: "Leg Press Calf Press",   spec: "3×15–20" },
+              ],
             },
             {
-              name: "Romanian Deadlift",
-              spec: "3×8–10 · hip-dominant",
-              notes: "Hinge at hips, soft knee bend. Bar stays close to legs.",
+              name: "ARMS",
+              exercises: [
+                { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
+                { name: "Hammer Curls",         spec: "3×10–12" },
+              ],
             },
-            { name: "Hamstring Curl", spec: "3×10–12" },
-            { name: "Calf Raises", spec: "3×12–15" },
+            {
+              name: "ABS",
+              exercises: [
+                { name: "Hanging Toes to Bar", spec: "3×10–15" },
+              ],
+            },
+            REHAB_B,
           ],
           avoid: [
-            "Deep squats",
+            "Deep squats past parallel",
             "Lunges past ~60°",
-            "Heavy/full-range leg extensions",
+            "Heavy / full-range leg extensions",
             "Slant board / knees-over-toes",
           ],
         },
+
+        day4: {
+          label: "Full Body · Rehab A",
+          title: "Day 4",
+          tabLabel: "Day 4",
+          autoSlotDays: [4, 5], // Thursday + Friday
+          sections: [
+            {
+              name: "PUSH",
+              exercises: [
+                { name: "Chest Press (machine)", spec: "3×10–12" },
+                { name: "Cable Chest Fly",       spec: "3×12–15" },
+              ],
+            },
+            {
+              name: "PULL",
+              exercises: [
+                { name: "Machine Rows",  spec: "3×10–12" },
+                { name: "Lat Pulldown",  spec: "3×10–12" },
+              ],
+            },
+            {
+              name: "ARMS",
+              exercises: [
+                { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
+                { name: "Hammer Curls",         spec: "3×10–12" },
+                { name: "Wrist Curls (forearm)", spec: "3×15–20" },
+              ],
+            },
+            {
+              name: "ABS",
+              exercises: [
+                { name: "Abs Circuit",         spec: "5 min" },
+                { name: "Hanging Toes to Bar", spec: "3×10–15" },
+              ],
+            },
+            REHAB_A,
+          ],
+          avoid: [],
+        },
       };
+
+      // ─── Storage ────────────────────────────────────────────────────────────
 
       const TODAY = new Date().toISOString().slice(0, 10);
       const STORAGE_KEY = `${CONFIG.bodyPart}-done-${TODAY}`;
@@ -161,24 +266,31 @@
         );
       }
 
-      function getAutoSlot() {
-        const h = new Date().getHours();
-        for (const [slug, s] of Object.entries(SLOTS)) {
-          if (
-            s.autoSlotHours &&
-            h >= s.autoSlotHours[0] &&
-            h < s.autoSlotHours[1]
-          ) {
-            return slug;
-          }
-        }
-        return Object.keys(SLOTS)[0];
+      // Returns flat array of all built-in exercises for a slot
+      function flatBuiltin(slug) {
+        const s = SLOTS[slug];
+        if (s.exercises) return s.exercises;
+        return s.sections.flatMap((sec) => sec.exercises);
       }
 
+      // ─── Auto-slot ──────────────────────────────────────────────────────────
+
+      function getAutoSlot() {
+        const h   = new Date().getHours();
+        const day = new Date().getDay(); // 0=Sun … 6=Sat
+
+        if (h < 10) return "morning";
+
+        for (const [slug, s] of Object.entries(SLOTS)) {
+          if (s.autoSlotDays && s.autoSlotDays.includes(day)) return slug;
+        }
+        return "morning"; // weekend fallback
+      }
+
+      // ─── Render ─────────────────────────────────────────────────────────────
+
       function renderTabs() {
-        document.getElementById("tab-container").innerHTML = Object.entries(
-          SLOTS,
-        )
+        document.getElementById("tab-container").innerHTML = Object.entries(SLOTS)
           .map(
             ([slug, s]) =>
               `<div class="tab" data-slot="${slug}" onclick="setSlot('${slug}')">${s.tabLabel}</div>`,
@@ -193,6 +305,79 @@
               `<div class="signal-item"><strong>${sig.label}</strong>${sig.text}</div>`,
           )
           .join("");
+      }
+
+      function exBlock(slug, key, displayNum, ex, isCustom, isRehab) {
+        const isDone = !!doneState[key];
+        const deleteBtn = isCustom
+          ? `<button class="ex-delete-btn" onclick="event.stopPropagation();deleteCustom('${slug}',${parseInt(key.split("-c")[1])})" aria-label="remove">×</button>`
+          : "";
+        const classes = [
+          "ex",
+          isDone   ? "done"      : "",
+          isCustom ? "ex-custom" : "",
+          isRehab  ? "ex-rehab"  : "",
+        ].filter(Boolean).join(" ");
+
+        return `
+        <div class="block">
+          <div class="${classes}" id="ex-${key}">
+            <div class="ex-head" onclick="toggleDone('${key}')">
+              <span class="ex-num">${String(displayNum).padStart(2, "0")}</span>
+              <span class="ex-name">${ex.name}</span>
+              <span class="ex-spec">${ex.spec}</span>
+              ${deleteBtn}
+              <button class="ex-done-btn" aria-label="mark done">✓</button>
+            </div>
+            ${ex.notes ? `<div class="ex-notes">${ex.notes}</div>` : ""}
+          </div>
+        </div>`;
+      }
+
+      function renderExercises(slug) {
+        const s = SLOTS[slug];
+        const custom = loadCustom(slug);
+        let html = "";
+        let flatIdx = 0;
+
+        if (s.sections) {
+          s.sections.forEach((sec, si) => {
+            html += `<div class="section-header${si === 0 ? " first" : ""}">${sec.name}</div>`;
+            sec.exercises.forEach((ex) => {
+              html += exBlock(slug, `${slug}-${flatIdx}`, flatIdx + 1, ex, false, !!sec.isRehab);
+              flatIdx++;
+            });
+          });
+        } else {
+          s.exercises.forEach((ex) => {
+            html += exBlock(slug, `${slug}-${flatIdx}`, flatIdx + 1, ex, false, false);
+            flatIdx++;
+          });
+        }
+
+        const totalBuiltin = flatIdx;
+        if (custom.length) {
+          html += `<div class="section-header">CUSTOM</div>`;
+          custom.forEach((ex, i) => {
+            html += exBlock(slug, `${slug}-c${i}`, totalBuiltin + i + 1, ex, true, false);
+          });
+        }
+
+        html += `<div id="add-ex-wrap"><button class="add-ex-btn" onclick="showAddForm('${slug}')">+ add exercise</button></div>`;
+        document.getElementById("exercise-list").innerHTML = html;
+      }
+
+      function renderAvoid(slug) {
+        const s = SLOTS[slug];
+        const el = document.getElementById("avoid-section");
+        if (!s.avoid || !s.avoid.length) {
+          el.innerHTML = "";
+          return;
+        }
+        el.innerHTML = `<div class="avoid-block">
+        <div class="avoid-label">avoid today</div>
+        ${s.avoid.map((a) => `<div class="avoid-item">${a}</div>`).join("")}
+      </div>`;
       }
 
       function setSlot(slug) {
@@ -210,50 +395,7 @@
         updateProgress(slug);
       }
 
-      function exBlock(slug, key, displayNum, ex, isCustom) {
-        const isDone = !!doneState[key];
-        const deleteBtn = isCustom
-          ? `<button class="ex-delete-btn" onclick="event.stopPropagation();deleteCustom('${slug}',${parseInt(key.split("-c")[1])})" aria-label="remove">×</button>`
-          : "";
-        return `
-        <div class="block">
-          <div class="ex${isDone ? " done" : ""}${isCustom ? " ex-custom" : ""}" id="ex-${key}">
-            <div class="ex-head" onclick="toggleDone('${key}')">
-              <span class="ex-num">${String(displayNum).padStart(2, "0")}</span>
-              <span class="ex-name">${ex.name}</span>
-              <span class="ex-spec">${ex.spec}</span>
-              ${deleteBtn}
-              <button class="ex-done-btn" aria-label="mark done">✓</button>
-            </div>
-            ${ex.notes ? `<div class="ex-notes">${ex.notes}</div>` : ""}
-          </div>
-        </div>`;
-      }
-
-      function renderExercises(slug) {
-        const builtin = SLOTS[slug].exercises;
-        const custom = loadCustom(slug);
-
-        let html = builtin
-          .map((ex, i) => exBlock(slug, `${slug}-${i}`, i + 1, ex, false))
-          .join("");
-
-        html += custom
-          .map((ex, i) =>
-            exBlock(
-              slug,
-              `${slug}-c${i}`,
-              builtin.length + i + 1,
-              ex,
-              true,
-            ),
-          )
-          .join("");
-
-        html += `<div id="add-ex-wrap"><button class="add-ex-btn" onclick="showAddForm('${slug}')">+ add exercise</button></div>`;
-
-        document.getElementById("exercise-list").innerHTML = html;
-      }
+      // ─── Add / delete custom ────────────────────────────────────────────────
 
       function showAddForm(slug) {
         document.getElementById("add-ex-wrap").innerHTML = `
@@ -283,7 +425,6 @@
 
       function deleteCustom(slug, i) {
         const custom = loadCustom(slug);
-        // shift done states down for indices above the deleted one
         custom.forEach((_, idx) => {
           if (idx > i) doneState[`${slug}-c${idx - 1}`] = !!doneState[`${slug}-c${idx}`];
           if (idx === custom.length - 1) delete doneState[`${slug}-c${idx}`];
@@ -295,32 +436,20 @@
         updateProgress(slug);
       }
 
-      function renderAvoid(slug) {
-        const s = SLOTS[slug];
-        const el = document.getElementById("avoid-section");
-        if (!s.avoid.length) {
-          el.innerHTML = "";
-          return;
-        }
-        el.innerHTML = `<div class="avoid-block">
-      <div class="avoid-label">avoid today</div>
-      ${s.avoid.map((a) => `<div class="avoid-item">${a}</div>`).join("")}
-    </div>`;
-      }
+      // ─── Progress / done ────────────────────────────────────────────────────
 
       function toggleDone(key) {
         doneState[key] = !doneState[key];
         saveDoneState();
-        const exEl = document.getElementById("ex-" + key);
-        exEl.classList.toggle("done", doneState[key]);
+        document.getElementById("ex-" + key).classList.toggle("done", doneState[key]);
         updateProgress(currentSlot);
       }
 
       function updateProgress(slug) {
-        const builtin = SLOTS[slug].exercises;
-        const custom = loadCustom(slug);
-        const total = builtin.length + custom.length;
-        const done =
+        const builtin = flatBuiltin(slug);
+        const custom  = loadCustom(slug);
+        const total   = builtin.length + custom.length;
+        const done    =
           builtin.filter((_, i) => doneState[`${slug}-${i}`]).length +
           custom.filter((_, i) => doneState[`${slug}-c${i}`]).length;
         const pct = total ? (done / total) * 100 : 0;
@@ -330,10 +459,10 @@
 
       function resetDone() {
         if (!currentSlot) return;
-        const builtin = SLOTS[currentSlot].exercises;
-        const custom = loadCustom(currentSlot);
+        const builtin = flatBuiltin(currentSlot);
+        const custom  = loadCustom(currentSlot);
         builtin.forEach((_, i) => delete doneState[`${currentSlot}-${i}`]);
-        custom.forEach((_, i) => delete doneState[`${currentSlot}-c${i}`]);
+        custom.forEach((_, i)  => delete doneState[`${currentSlot}-c${i}`]);
         saveDoneState();
         renderExercises(currentSlot);
         updateProgress(currentSlot);
@@ -341,12 +470,12 @@
 
       function updateClock() {
         const now = new Date();
-        const h = String(now.getHours()).padStart(2, "0");
-        const m = String(now.getMinutes()).padStart(2, "0");
-        document.getElementById("clock").textContent = h + ":" + m;
+        document.getElementById("clock").textContent =
+          String(now.getHours()).padStart(2, "0") + ":" +
+          String(now.getMinutes()).padStart(2, "0");
       }
 
-      // Init
+      // ─── Init ───────────────────────────────────────────────────────────────
       document.getElementById("app-title").textContent = CONFIG.title;
       document.title = CONFIG.title.replace(" / ", " — ");
       renderTabs();

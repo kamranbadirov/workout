@@ -203,6 +203,25 @@ header {
   letter-spacing: 0.02em;
 }
 
+/* SECTION HEADERS */
+.section-header {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding: 20px 0 8px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 6px;
+}
+
+.section-header.first {
+  padding-top: 0;
+}
+
+.ex-rehab {
+  border-left: 2px solid var(--accent);
+}
+
 .ex-custom {
   border-left: 2px solid var(--muted);
 }
