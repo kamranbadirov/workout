@@ -503,11 +503,16 @@ body.landing {
 body.landing .container {
   display: flex;
   flex-direction: column;
+  max-width: 480px;
+}
+
+body.landing header {
+  max-width: 480px;
 }
 
 .landing-cards {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 12px;
   padding: 20px 0;
 }
@@ -515,15 +520,33 @@ body.landing .container {
 .landing-card {
   text-decoration: none;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 38px 20px 36px;
-  flex: 1;
+  padding: 28px 24px;
   position: relative;
   transition: border-color 0.2s;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  body.landing .container,
+  body.landing header {
+    max-width: 720px;
+  }
+
+  .landing-cards {
+    flex-direction: row;
+  }
+
+  .landing-card {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 38px 20px 36px;
+  }
 }
 
 .landing-card:hover {
@@ -545,11 +568,18 @@ body.landing .container {
 
 .card-title {
   font-family: "Syne", sans-serif;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 800;
   color: var(--accent);
   line-height: 1;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
+}
+
+@media (min-width: 640px) {
+  .card-title {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
 }
 
 .card-desc {
@@ -560,17 +590,25 @@ body.landing .container {
 }
 
 .card-arrow {
-  position: absolute;
-  right: 16px;
-  bottom: 20px;
+  margin-left: auto;
   font-size: 18px;
   color: var(--accent);
   opacity: 0.4;
   transition: opacity 0.15s;
+  flex-shrink: 0;
 }
 
 .landing-card:hover .card-arrow {
   opacity: 1;
+}
+
+@media (min-width: 640px) {
+  .card-arrow {
+    position: absolute;
+    right: 16px;
+    bottom: 20px;
+    margin-left: 0;
+  }
 }
 
 /* ─── NAVIGATION ───────────────────────────────────────────────────────────── */
@@ -592,8 +630,15 @@ body.landing .container {
 .filter-pills {
   display: flex;
   gap: 6px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   margin-bottom: 16px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.filter-pills::-webkit-scrollbar {
+  display: none;
 }
 
 .filter-pill {
@@ -607,6 +652,8 @@ body.landing .container {
   color: var(--muted);
   cursor: pointer;
   transition: all 0.15s;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .filter-pill:hover {

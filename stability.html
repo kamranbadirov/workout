@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KINETIC — Stability</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="exercises.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html" class="back-btn">←</a>
+      <div class="logo">KINETIC</div>
+      <div id="clock">--:--</div>
+    </header>
+
+    <div class="container">
+
+      <!-- SESSION (top) -->
+      <div class="session-divider">YOUR SESSION</div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div class="progress-fill" id="builder-prog-fill" style="width: 0%"></div>
+        </div>
+        <div class="progress-text" id="builder-prog-text">0 / 0 done</div>
+      </div>
+
+      <div id="session-list">
+        <div class="empty-session">no exercises yet — search below to add</div>
+      </div>
+
+      <button class="reset-btn" onclick="resetBuilderDone()">↺ reset session</button>
+
+      <!-- SEARCH (below session) -->
+      <div class="search-section">
+        <div class="filter-pills" id="filter-pills">
+          <div class="filter-pill active" data-filter="All">All</div>
+          <div class="filter-pill" data-filter="Knee">Knee</div>
+          <div class="filter-pill" data-filter="Hip">Hip</div>
+          <div class="filter-pill" data-filter="Shoulder">Shoulder</div>
+          <div class="filter-pill" data-filter="Ankle">Ankle</div>
+          <div class="filter-pill" data-filter="Core">Core</div>
+          <div class="filter-pill" data-filter="Full Body">Full Body</div>
+          <div class="filter-pill" data-filter="Posture">Posture</div>
+        </div>
+
+        <div class="search-wrap">
+          <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="search stability exercises..."
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+          />
+        </div>
+
+        <div id="search-results" class="search-results"></div>
+      </div>
+
+    </div>
+
+    <script src="stability.js"></script>
+  </body>
+</html>
