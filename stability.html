@@ -63,6 +63,26 @@
 
     </div>
 
+    <button class="contact-btn" onclick="openContact()">contact</button>
+    <div class="contact-overlay" id="contact-overlay" onclick="closeContact(event)">
+      <div class="contact-modal">
+        <div class="contact-header">
+          <span class="contact-title">Get in touch</span>
+          <button class="contact-close" onclick="closeContact()">×</button>
+        </div>
+        <form id="contact-form" onsubmit="submitContact(event)">
+          <input type="hidden" name="access_key" value="8ed04ea0-6265-4629-af50-b87884f7a27f">
+          <input type="hidden" name="subject" value="KINETIC — Contact">
+          <input class="contact-input" type="text"  name="name"    placeholder="your name"  required autocomplete="off" />
+          <input class="contact-input" type="email" name="email"   placeholder="your email" required autocomplete="off" />
+          <textarea class="contact-input contact-textarea" name="message" placeholder="message" required></textarea>
+          <button class="contact-submit" type="submit">send →</button>
+        </form>
+        <div class="contact-success" id="contact-success">message sent ✓</div>
+      </div>
+    </div>
+
     <script src="stability.js"></script>
+    <script src="contact.js"></script>
   </body>
 </html>
