@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KINETIC</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="kinetic.png" />
   </head>
   <body class="landing">
     <header>
@@ -36,18 +37,45 @@
 
     <button class="contact-btn" onclick="openContact()">contact</button>
 
-    <div class="contact-overlay" id="contact-overlay" onclick="closeContact(event)">
+    <div
+      class="contact-overlay"
+      id="contact-overlay"
+      onclick="closeContact(event)"
+    >
       <div class="contact-modal">
         <div class="contact-header">
           <span class="contact-title">Get in touch</span>
           <button class="contact-close" onclick="closeContact()">×</button>
         </div>
         <form id="contact-form" onsubmit="submitContact(event)">
-          <input type="hidden" name="access_key" value="8ed04ea0-6265-4629-af50-b87884f7a27f">
-          <input type="hidden" name="subject" value="KINETIC — Contact">
-          <input class="contact-input" type="text"  name="name"    placeholder="your name"  required autocomplete="off" />
-          <input class="contact-input" type="email" name="email"   placeholder="your email" required autocomplete="off" />
-          <textarea class="contact-input contact-textarea" name="message" placeholder="message" required></textarea>
+          <input
+            type="hidden"
+            name="access_key"
+            value="8ed04ea0-6265-4629-af50-b87884f7a27f"
+          />
+          <input type="hidden" name="subject" value="KINETIC — Contact" />
+          <input
+            class="contact-input"
+            type="text"
+            name="name"
+            placeholder="your name"
+            required
+            autocomplete="off"
+          />
+          <input
+            class="contact-input"
+            type="email"
+            name="email"
+            placeholder="your email"
+            required
+            autocomplete="off"
+          />
+          <textarea
+            class="contact-input contact-textarea"
+            name="message"
+            placeholder="message"
+            required
+          ></textarea>
           <button class="contact-submit" type="submit">send →</button>
         </form>
         <div class="contact-success" id="contact-success">message sent ✓</div>
@@ -58,35 +86,40 @@
       function updateClock() {
         var now = new Date();
         document.getElementById("clock").textContent =
-          String(now.getHours()).padStart(2, "0") + ":" +
+          String(now.getHours()).padStart(2, "0") +
+          ":" +
           String(now.getMinutes()).padStart(2, "0");
       }
       updateClock();
       setInterval(updateClock, 10000);
 
       function openContact() {
-        document.getElementById('contact-overlay').classList.add('open');
+        document.getElementById("contact-overlay").classList.add("open");
       }
       function closeContact(e) {
-        if (!e || e.target === document.getElementById('contact-overlay') || !e.target.closest) {
-          document.getElementById('contact-overlay').classList.remove('open');
+        if (
+          !e ||
+          e.target === document.getElementById("contact-overlay") ||
+          !e.target.closest
+        ) {
+          document.getElementById("contact-overlay").classList.remove("open");
         }
       }
       async function submitContact(e) {
         e.preventDefault();
-        var form = document.getElementById('contact-form');
-        var btn  = form.querySelector('.contact-submit');
-        btn.textContent = 'sending...';
+        var form = document.getElementById("contact-form");
+        var btn = form.querySelector(".contact-submit");
+        btn.textContent = "sending...";
         btn.disabled = true;
-        var res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
+        var res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
           body: new FormData(form),
         });
         if (res.ok) {
-          form.style.display = 'none';
-          document.getElementById('contact-success').style.display = 'block';
+          form.style.display = "none";
+          document.getElementById("contact-success").style.display = "block";
         } else {
-          btn.textContent = 'try again';
+          btn.textContent = "try again";
           btn.disabled = false;
         }
       }
