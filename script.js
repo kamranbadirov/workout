@@ -41,7 +41,7 @@ const SLOTS = {
     exercises: [
       { name: "Neck Work",        spec: "3 × 15 each" },
       { name: "Reverse Curls",    spec: "3 × 5 each" },
-      { name: "Push-ups",         spec: "3 × max" },
+      { name: "Push-ups",         spec: "100" },
       { name: "Pull-ups",         spec: "3 × max" },
       { name: "Plank",            spec: "3 × 30–60s" },
       { name: "Quad Sets",        spec: "2 × 10 · 5s hold", notes: "Press back of knee into floor. No leg lift." },
@@ -60,7 +60,7 @@ const SLOTS = {
         { name: "Incline Bench Press",     spec: "3×8–10" },
         { name: "Incline Dumbbell Press",  spec: "3×10–12" },
         { name: "Cable Chest Fly",         spec: "3×12–15" },
-        { name: "Push-ups",                spec: "2 × max" },
+        { name: "Push-ups",                spec: "100" },
       ]},
       { name: "TRICEPS", exercises: [
         { name: "Dips",                            spec: "3×8–12" },
