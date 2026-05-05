@@ -12,11 +12,44 @@ const REHAB_A = {
   name: "REHAB A",
   isRehab: true,
   exercises: [
-    { name: "Quad Sets",                spec: "3×10 · 5–10s hold",      notes: "Press back of knee into floor. No leg lift." },
-    { name: "TKE (band)",               spec: "3×12–15 · slow lockout", notes: "Slow, full lockout — avoid snapping into extension." },
-    { name: "Straight Leg Raises",      spec: "3×10–12 · 2s up/down",   notes: "Lock knee fully before lifting. Toes pointed up." },
-    { name: "Glute Bridge",             spec: "3×12–15 · 2s squeeze",   notes: "Drive through heels. Do not hyperextend lower back at top." },
-    { name: "Side-Lying Hip Abduction", spec: "2–3×12–15",              notes: "Keep pelvis stacked, do not rotate forward during lift." },
+    // ──────────────── PHASE 1 ────────────────
+    // { name: "Quad Sets",                spec: "3×10 · 5–10s hold",      notes: "Press back of knee into floor. No leg lift." },
+    // { name: "TKE (band)",               spec: "3×12–15 · slow lockout", notes: "Slow, full lockout — avoid snapping into extension." },
+    // { name: "Straight Leg Raises",      spec: "3×10–12 · 2s up/down",   notes: "Lock knee fully before lifting. Toes pointed up." },
+    // { name: "Glute Bridge",             spec: "3×12–15 · 2s squeeze",   notes: "Drive through heels. Do not hyperextend lower back at top." },
+    // { name: "Side-Lying Hip Abduction", spec: "2–3×12–15",              notes: "Keep pelvis stacked, do not rotate forward during lift." },
+    // ──────────────── PHASE 1 ────────────────
+    // ──────────────── PHASE 2 ────────────────
+    {
+      name: "Step-ups (low box)",
+      spec: "3×10/leg",
+      notes:
+        "Drive through heel of working leg. Avoid pushing off back foot — it should barely touch the box.",
+    },
+    {
+      name: "Split squats (short stride)",
+      spec: "3×8/leg",
+      notes:
+        "Torso upright, front shin vertical, back heel raised with toes on the floor. Feet staggered on a diagonal — not inline. Lower straight down.",
+    },
+    {
+      name: "Wall sits (60–70°)",
+      spec: "3×30–45s",
+      notes:
+        "Thighs parallel or just above. Press entire back flat into wall. Keep weight in heels, not toes.",
+    },
+    {
+      name: "TKE",
+      spec: "3×15",
+      notes:
+        "Squeeze quad fully at end range. Stop just short of lockout snap — no hyperextension.",
+    },
+    {
+      name: "Calf raises",
+      spec: "3x15",
+      notes:
+        "Full range: drop heel below step level, rise all the way up. Slow and controlled on the way down.",
+    },
   ],
 };
 
@@ -24,11 +57,56 @@ const REHAB_B = {
   name: "REHAB B",
   isRehab: true,
   exercises: [
-    { name: "Shallow Wall Sit",  spec: "4×20–30s · 30–45° only",     notes: "Back flat against wall. Stop at 45° — do not push past comfort." },
-    { name: "Step-Ups (low)",    spec: "3×8–10 / leg · no push-off", notes: "Lead leg only. No push-off from trailing foot." },
-    { name: "Romanian Deadlift", spec: "3×8–10 · hip-dominant",      notes: "Hinge at hips, soft knee bend. Bar stays close to legs." },
-    { name: "Hamstring Curl",    spec: "3×10–12" },
-    { name: "Calf Raises",       spec: "3×12–15" },
+    // ──────────────── PHASE 1 ────────────────
+    // {
+    //   name: "Shallow Wall Sit",
+    //   spec: "4×20–30s · 30–45° only",
+    //   notes: "Back flat against wall. Stop at 45° — do not push past comfort.",
+    // },
+    // {
+    //   name: "Step-Ups (low)",
+    //   spec: "3×8–10 / leg · no push-off",
+    //   notes: "Lead leg only. No push-off from trailing foot.",
+    // },
+    // {
+    //   name: "Romanian Deadlift",
+    //   spec: "3×8–10 · hip-dominant",
+    //   notes: "Hinge at hips, soft knee bend. Bar stays close to legs.",
+    // },
+    // { name: "Hamstring Curl", spec: "3×10–12" },
+    // { name: "Calf Raises", spec: "3×12–15" },
+    // ──────────────── PHASE 1 ────────────────
+    // ──────────────── PHASE 2 ────────────────
+    {
+      name: "Single-leg RDL",
+      spec: "3×8 / leg",
+      notes:
+        "Hinge at hip, not waist. Keep hips square — back leg floats as counterweight. Feel it in the hamstring, not the lower back.",
+    },
+    {
+      name: "Single-leg glute bridge",
+      spec: "3×10 / leg",
+      notes:
+        "Drive through heel. Keep hips level — don't let the free side drop. Squeeze at top, don't arch the lower back.",
+    },
+    {
+      name: "Side-lying abduction (slow tempo)",
+      spec: "3×12 / leg",
+      notes:
+        "Stack hips — don't let top hip roll back. 2s up, 3s down, no momentum.",
+    },
+    {
+      name: "Banded lateral walks",
+      spec: "3×12 steps each way",
+      notes:
+        "Band above knees. Stay in a quarter squat — don't stand between steps. Knees track out, don't cave.",
+    },
+    {
+      name: "Single-leg balance (knee over toe)",
+      spec: "3×30s",
+      notes:
+        "Soft knee bend tracking over second toe. Grip the floor with toes if wobbling.",
+    },
   ],
 };
 
@@ -39,13 +117,21 @@ const SLOTS = {
     tabLabel: "Morning",
     autoSlotDays: null,
     exercises: [
-      { name: "Neck Work",        spec: "3 × 15 each" },
-      { name: "Reverse Curls",    spec: "3 × 5 each" },
-      { name: "Push-ups",         spec: "100" },
-      { name: "Pull-ups",         spec: "3 × max" },
-      { name: "Plank",            spec: "3 × 30–60s" },
-      { name: "Quad Sets",        spec: "2 × 10 · 5s hold", notes: "Press back of knee into floor. No leg lift." },
-      { name: "Light TKE (band)", spec: "2 × 15",           notes: "Slow, full lockout — avoid snapping into extension." },
+      { name: "Neck Work", spec: "3 × 15 each" },
+      { name: "Reverse Curls", spec: "3 × 5 each" },
+      { name: "Push-ups", spec: "100" },
+      { name: "Pull-ups", spec: "3 × max" },
+      { name: "Plank", spec: "3 × 30–60s" },
+      {
+        name: "Quad Sets",
+        spec: "2 × 10 · 5s hold",
+        notes: "Press back of knee into floor. No leg lift.",
+      },
+      {
+        name: "Light TKE",
+        spec: "2 × 15",
+        notes: "Slow, full lockout — avoid snapping into extension.",
+      },
     ],
     avoid: ["Explosive movements", "Deep knee bending (joint stiff early AM)"],
   },
@@ -55,22 +141,26 @@ const SLOTS = {
     tabLabel: "Day 1",
     autoSlotDays: [1],
     sections: [
-      { name: "CHEST", exercises: [
-        { name: "Bench Press",             spec: "4×6–8" },
-        { name: "Incline Bench Press",     spec: "3×8–10" },
-        { name: "Incline Dumbbell Press",  spec: "3×10–12" },
-        { name: "Cable Chest Fly",         spec: "3×12–15" },
-        { name: "Push-ups",                spec: "100" },
-      ]},
-      { name: "TRICEPS", exercises: [
-        { name: "Dips",                            spec: "3×8–12" },
-        { name: "Triceps Pushdown (cable)",        spec: "3×12–15" },
-        { name: "Overhead Triceps Extension (DB)", spec: "3×10–12" },
-      ]},
-      { name: "ARMS", exercises: [
-        { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
-        { name: "Hammer Curls",         spec: "3×10–12" },
-      ]},
+      {
+        name: "CHEST",
+        exercises: [
+          { name: "Bench Press", spec: "4×6–8" },
+          { name: "Incline Bench Press", spec: "3×8–10" },
+          { name: "Incline Dumbbell Press", spec: "3×10–12" },
+          { name: "Cable Chest Fly", spec: "3×12–15" },
+          { name: "Push-ups", spec: "100" },
+        ],
+      },
+      {
+        name: "ARMS",
+        exercises: [
+          { name: "Dips", spec: "3×8–12" },
+          { name: "Triceps Pushdown (cable)", spec: "3×12–15" },
+          { name: "Overhead Triceps Extension (DB)", spec: "3×10–12" },
+          { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
+          { name: "Hammer Curls", spec: "3×10–12" },
+        ],
+      },
       REHAB_A,
     ],
     avoid: [],
@@ -81,21 +171,27 @@ const SLOTS = {
     tabLabel: "Day 2",
     autoSlotDays: [2],
     sections: [
-      { name: "BACK", exercises: [
-        { name: "Pull-ups",          spec: "4 × max" },
-        { name: "Deadlift",          spec: "4×4–6" },
-        { name: "Dumbbell Rows",     spec: "3×8–10 / arm" },
-        { name: "Seated Cable Rows", spec: "3×10–12" },
-        { name: "Machine Rows",      spec: "3×12–15" },
-        { name: "Face Pulls",        spec: "3×15–20" },
-        { name: "Shoulder Shrugs",   spec: "3×12–15" },
-      ]},
-      { name: "BICEPS", exercises: [
-        { name: "Machine Bicep Curls",  spec: "3×10–12" },
-        { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
-        { name: "Hammer Curls",         spec: "3×10–12" },
-      ]},
-      REHAB_A,
+      {
+        name: "BACK",
+        exercises: [
+          { name: "Pull-ups", spec: "4 × max" },
+          { name: "Deadlift", spec: "4×4–6" },
+          { name: "Dumbbell Rows", spec: "3×8–10 / arm" },
+          { name: "Seated Cable Rows", spec: "3×10–12" },
+          { name: "Machine Rows", spec: "3×12–15" },
+          { name: "Face Pulls", spec: "3×15–20" },
+          { name: "Shoulder Shrugs", spec: "3×12–15" },
+        ],
+      },
+      {
+        name: "Arms",
+        exercises: [
+          { name: "Machine Bicep Curls", spec: "3×10–12" },
+          { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
+          { name: "Hammer Curls", spec: "3×10–12" },
+        ],
+      },
+      REHAB_B,
     ],
     avoid: [],
   },
@@ -105,22 +201,34 @@ const SLOTS = {
     tabLabel: "Day 3",
     autoSlotDays: [3],
     sections: [
-      { name: "LEGS", exercises: [
-        { name: "Squat",                   spec: "4×6–8" },
-        { name: "Seated Leg Press",        spec: "3×10–12 · moderate depth" },
-        { name: "Incline Leg Press (45°)", spec: "3×10–12" },
-        { name: "Leg Extension",           spec: "3×12–15 · light · partial", notes: "Light weight only. Stop short of full extension — protect fat pad." },
-        { name: "Calf Raises",             spec: "4×15–20" },
-        { name: "Leg Press Calf Press",    spec: "3×15–20" },
-      ]},
-      { name: "ARMS", exercises: [
-        { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
-        { name: "Hammer Curls",         spec: "3×10–12" },
-      ]},
-      { name: "ABS", exercises: [
-        { name: "Hanging Toes to Bar", spec: "3×10–15" },
-      ]},
-      REHAB_B,
+      {
+        name: "LEGS",
+        exercises: [
+          { name: "Squat", spec: "4×6–8" },
+          { name: "Seated Leg Press", spec: "3×10–12 · moderate depth" },
+          { name: "Incline Leg Press (45°)", spec: "3×10–12" },
+          {
+            name: "Leg Extension",
+            spec: "3×12–15 · light · partial",
+            notes:
+              "Light weight only. Stop short of full extension — protect fat pad.",
+          },
+          { name: "Calf Raises", spec: "4×15–20" },
+          { name: "Leg Press Calf Press", spec: "3×15–20" },
+        ],
+      },
+      {
+        name: "ARMS",
+        exercises: [
+          { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
+          { name: "Hammer Curls", spec: "3×10–12" },
+        ],
+      },
+      {
+        name: "ABS",
+        exercises: [{ name: "Hanging Toes to Bar", spec: "3×10–15" }],
+      },
+      REHAB_A,
     ],
     avoid: [
       "Deep squats past parallel",
@@ -135,24 +243,36 @@ const SLOTS = {
     tabLabel: "Day 4",
     autoSlotDays: [4, 5],
     sections: [
-      { name: "PUSH", exercises: [
-        { name: "Chest Press (machine)", spec: "3×10–12" },
-        { name: "Cable Chest Fly",       spec: "3×12–15" },
-      ]},
-      { name: "PULL", exercises: [
-        { name: "Machine Rows", spec: "3×10–12" },
-        { name: "Lat Pulldown", spec: "3×10–12" },
-      ]},
-      { name: "ARMS", exercises: [
-        { name: "EZ-Bar Reverse Curls",  spec: "3×10–12" },
-        { name: "Hammer Curls",          spec: "3×10–12" },
-        { name: "Wrist Curls (forearm)", spec: "3×15–20" },
-      ]},
-      { name: "ABS", exercises: [
-        { name: "Abs Circuit",         spec: "5 min" },
-        { name: "Hanging Toes to Bar", spec: "3×10–15" },
-      ]},
-      REHAB_A,
+      {
+        name: "CHEST",
+        exercises: [
+          { name: "Chest Press (machine)", spec: "3×10–12" },
+          { name: "Cable Chest Fly", spec: "3×12–15" },
+        ],
+      },
+      {
+        name: "BACK",
+        exercises: [
+          { name: "Machine Rows", spec: "3×10–12" },
+          { name: "Lat Pulldown", spec: "3×10–12" },
+        ],
+      },
+      {
+        name: "ARMS",
+        exercises: [
+          { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
+          { name: "Hammer Curls", spec: "3×10–12" },
+          { name: "Wrist Curls (forearm)", spec: "3×15–20" },
+        ],
+      },
+      {
+        name: "ABS",
+        exercises: [
+          { name: "Abs Circuit", spec: "5 min" },
+          { name: "Hanging Toes to Bar", spec: "3×10–15" },
+        ],
+      },
+      REHAB_B,
     ],
     avoid: [],
   },
@@ -170,21 +290,35 @@ function saveDoneState() {
 }
 
 function loadCustom(slug) {
-  return JSON.parse(localStorage.getItem(`${CONFIG.bodyPart}-custom-${slug}`) || "[]");
+  return JSON.parse(
+    localStorage.getItem(`${CONFIG.bodyPart}-custom-${slug}`) || "[]",
+  );
 }
 function saveCustom(slug, arr) {
-  localStorage.setItem(`${CONFIG.bodyPart}-custom-${slug}`, JSON.stringify(arr));
+  localStorage.setItem(
+    `${CONFIG.bodyPart}-custom-${slug}`,
+    JSON.stringify(arr),
+  );
 }
 
 function loadRemoved(slug) {
-  return new Set(JSON.parse(localStorage.getItem(`${CONFIG.bodyPart}-removed-${slug}`) || "[]"));
+  return new Set(
+    JSON.parse(
+      localStorage.getItem(`${CONFIG.bodyPart}-removed-${slug}`) || "[]",
+    ),
+  );
 }
 function saveRemoved(slug, set) {
-  localStorage.setItem(`${CONFIG.bodyPart}-removed-${slug}`, JSON.stringify([...set]));
+  localStorage.setItem(
+    `${CONFIG.bodyPart}-removed-${slug}`,
+    JSON.stringify([...set]),
+  );
 }
 
 function loadOrder(slug) {
-  return JSON.parse(localStorage.getItem(`${CONFIG.bodyPart}-order-${slug}`) || "null");
+  return JSON.parse(
+    localStorage.getItem(`${CONFIG.bodyPart}-order-${slug}`) || "null",
+  );
 }
 function saveOrder(slug, arr) {
   localStorage.setItem(`${CONFIG.bodyPart}-order-${slug}`, JSON.stringify(arr));
@@ -201,9 +335,11 @@ function flatBuiltin(slug) {
 // Keys for all currently visible (non-removed) exercises in default order
 function getCurrentKeys(slug) {
   const removed = loadRemoved(slug);
-  const custom  = loadCustom(slug);
-  const keys    = [];
-  flatBuiltin(slug).forEach((_, i) => { if (!removed.has(i)) keys.push(`${slug}-${i}`); });
+  const custom = loadCustom(slug);
+  const keys = [];
+  flatBuiltin(slug).forEach((_, i) => {
+    if (!removed.has(i)) keys.push(`${slug}-${i}`);
+  });
   custom.forEach((_, i) => keys.push(`${slug}-c${i}`));
   return keys;
 }
@@ -224,16 +360,26 @@ function isRehabExercise(slug, flatIdx) {
 function getExByKey(slug, key) {
   if (key.includes("-c")) {
     const i = parseInt(key.split("-c")[1]);
-    return { ex: loadCustom(slug)[i], isCustom: true, isRehab: false, builtinIdx: undefined };
+    return {
+      ex: loadCustom(slug)[i],
+      isCustom: true,
+      isRehab: false,
+      builtinIdx: undefined,
+    };
   }
   const i = parseInt(key.replace(`${slug}-`, ""));
-  return { ex: flatBuiltin(slug)[i], isCustom: false, isRehab: isRehabExercise(slug, i), builtinIdx: i };
+  return {
+    ex: flatBuiltin(slug)[i],
+    isCustom: false,
+    isRehab: isRehabExercise(slug, i),
+    builtinIdx: i,
+  };
 }
 
 // ─── Auto-slot ─────────────────────────────────────────────────────────────────
 
 function getAutoSlot() {
-  const h   = new Date().getHours();
+  const h = new Date().getHours();
   const day = new Date().getDay();
   if (h < 10) return "morning";
   for (const [slug, s] of Object.entries(SLOTS)) {
@@ -246,13 +392,19 @@ function getAutoSlot() {
 
 function renderTabs() {
   document.getElementById("tab-container").innerHTML = Object.entries(SLOTS)
-    .map(([slug, s]) => `<div class="tab" data-slot="${slug}" onclick="setSlot('${slug}')">${s.tabLabel}</div>`)
+    .map(
+      ([slug, s]) =>
+        `<div class="tab" data-slot="${slug}" onclick="setSlot('${slug}')">${s.tabLabel}</div>`,
+    )
     .join("");
 }
 
 function renderSignals() {
   document.getElementById("signal-section").innerHTML = CONFIG.signals
-    .map((sig) => `<div class="signal-item"><strong>${sig.label}</strong>${sig.text}</div>`)
+    .map(
+      (sig) =>
+        `<div class="signal-item"><strong>${sig.label}</strong>${sig.text}</div>`,
+    )
     .join("");
 }
 
@@ -261,8 +413,14 @@ function exBlock(slug, key, displayNum, ex, isCustom, isRehab, builtinIdx) {
   const deleteBtn = isCustom
     ? `<button class="ex-delete-btn" onclick="event.stopPropagation();deleteCustom('${slug}',${parseInt(key.split("-c")[1])})" aria-label="remove">×</button>`
     : `<button class="ex-delete-btn" onclick="event.stopPropagation();removeBuiltin('${slug}',${builtinIdx})" aria-label="remove">×</button>`;
-  const classes = ["ex", isDone ? "done" : "", isCustom ? "ex-custom" : "", isRehab ? "ex-rehab" : ""]
-    .filter(Boolean).join(" ");
+  const classes = [
+    "ex",
+    isDone ? "done" : "",
+    isCustom ? "ex-custom" : "",
+    isRehab ? "ex-rehab" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return `
   <div class="block" data-key="${key}" draggable="true">
@@ -281,10 +439,10 @@ function exBlock(slug, key, displayNum, ex, isCustom, isRehab, builtinIdx) {
 }
 
 function renderExercises(slug) {
-  const s           = SLOTS[slug];
-  const custom      = loadCustom(slug);
-  const removed     = loadRemoved(slug);
-  const savedOrder  = loadOrder(slug);
+  const s = SLOTS[slug];
+  const custom = loadCustom(slug);
+  const removed = loadRemoved(slug);
+  const savedOrder = loadOrder(slug);
   const currentKeys = getCurrentKeys(slug);
   let html = "";
   let displayNum = 1;
@@ -297,7 +455,16 @@ function renderExercises(slug) {
     ];
     order.forEach((key) => {
       const { ex, isCustom, isRehab, builtinIdx } = getExByKey(slug, key);
-      if (ex) html += exBlock(slug, key, displayNum++, ex, isCustom, isRehab, builtinIdx);
+      if (ex)
+        html += exBlock(
+          slug,
+          key,
+          displayNum++,
+          ex,
+          isCustom,
+          isRehab,
+          builtinIdx,
+        );
     });
   } else {
     // Default order — section headers visible
@@ -309,7 +476,15 @@ function renderExercises(slug) {
         let secHtml = "";
         sec.exercises.forEach((ex) => {
           if (!removed.has(flatIdx)) {
-            secHtml += exBlock(slug, `${slug}-${flatIdx}`, displayNum++, ex, false, !!sec.isRehab, flatIdx);
+            secHtml += exBlock(
+              slug,
+              `${slug}-${flatIdx}`,
+              displayNum++,
+              ex,
+              false,
+              !!sec.isRehab,
+              flatIdx,
+            );
           }
           flatIdx++;
         });
@@ -322,7 +497,15 @@ function renderExercises(slug) {
     } else {
       s.exercises.forEach((ex) => {
         if (!removed.has(flatIdx)) {
-          html += exBlock(slug, `${slug}-${flatIdx}`, displayNum++, ex, false, false, flatIdx);
+          html += exBlock(
+            slug,
+            `${slug}-${flatIdx}`,
+            displayNum++,
+            ex,
+            false,
+            false,
+            flatIdx,
+          );
         }
         flatIdx++;
       });
@@ -345,24 +528,31 @@ function renderExercises(slug) {
   document.getElementById("exercise-list").innerHTML = html;
 
   // Attach drag listeners after render
-  document.querySelectorAll("#exercise-list .block[data-key]").forEach((block) => {
-    block.addEventListener("dragstart", onDragStart);
-    block.addEventListener("dragend",   onDragEnd);
-    block.addEventListener("dragover",  onDragOver);
-    block.addEventListener("dragleave", onDragLeave);
-    block.addEventListener("drop",      onDrop);
-  });
+  document
+    .querySelectorAll("#exercise-list .block[data-key]")
+    .forEach((block) => {
+      block.addEventListener("dragstart", onDragStart);
+      block.addEventListener("dragend", onDragEnd);
+      block.addEventListener("dragover", onDragOver);
+      block.addEventListener("dragleave", onDragLeave);
+      block.addEventListener("drop", onDrop);
+    });
   document.querySelectorAll("#exercise-list .drag-handle").forEach((handle) => {
-    handle.addEventListener("touchstart", onHandleTouchStart, { passive: false });
-    handle.addEventListener("touchmove",  onHandleTouchMove,  { passive: false });
-    handle.addEventListener("touchend",   onHandleTouchEnd);
+    handle.addEventListener("touchstart", onHandleTouchStart, {
+      passive: false,
+    });
+    handle.addEventListener("touchmove", onHandleTouchMove, { passive: false });
+    handle.addEventListener("touchend", onHandleTouchEnd);
   });
 }
 
 function renderAvoid(slug) {
-  const s  = SLOTS[slug];
+  const s = SLOTS[slug];
   const el = document.getElementById("avoid-section");
-  if (!s.avoid || !s.avoid.length) { el.innerHTML = ""; return; }
+  if (!s.avoid || !s.avoid.length) {
+    el.innerHTML = "";
+    return;
+  }
   el.innerHTML = `<div class="avoid-block">
     <div class="avoid-label">avoid today</div>
     ${s.avoid.map((a) => `<div class="avoid-item">${a}</div>`).join("")}
@@ -374,7 +564,9 @@ function setSlot(slug) {
   const s = SLOTS[slug];
   document.getElementById("slot-label").textContent = s.label;
   document.getElementById("slot-title").textContent = s.title;
-  document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("active", t.dataset.slot === slug));
+  document
+    .querySelectorAll(".tab")
+    .forEach((t) => t.classList.toggle("active", t.dataset.slot === slug));
   renderExercises(slug);
   renderAvoid(slug);
   updateProgress(slug);
@@ -406,25 +598,29 @@ function confirmAddEx(slug) {
   saveCustom(slug, custom);
   // append to saved order if one exists
   const saved = loadOrder(slug);
-  if (saved) { saved.push(`${slug}-c${custom.length - 1}`); saveOrder(slug, saved); }
+  if (saved) {
+    saved.push(`${slug}-c${custom.length - 1}`);
+    saveOrder(slug, saved);
+  }
   renderExercises(slug);
   updateProgress(slug);
 }
 
 function deleteCustom(slug, i) {
   const custom = loadCustom(slug);
-  const saved  = loadOrder(slug);
+  const saved = loadOrder(slug);
   if (saved) {
     const newOrder = saved
       .filter((k) => k !== `${slug}-c${i}`)
       .map((k) => {
         const m = k.match(new RegExp(`^${slug}-c(\\d+)$`));
-        return (m && parseInt(m[1]) > i) ? `${slug}-c${parseInt(m[1]) - 1}` : k;
+        return m && parseInt(m[1]) > i ? `${slug}-c${parseInt(m[1]) - 1}` : k;
       });
     saveOrder(slug, newOrder);
   }
   custom.forEach((_, idx) => {
-    if (idx > i) doneState[`${slug}-c${idx - 1}`] = !!doneState[`${slug}-c${idx}`];
+    if (idx > i)
+      doneState[`${slug}-c${idx - 1}`] = !!doneState[`${slug}-c${idx}`];
     if (idx === custom.length - 1) delete doneState[`${slug}-c${idx}`];
   });
   custom.splice(i, 1);
@@ -469,14 +665,18 @@ function onDragStart(e) {
 
 function onDragEnd(e) {
   e.currentTarget.classList.remove("dragging");
-  document.querySelectorAll("#exercise-list .block").forEach((b) => b.classList.remove("drag-over"));
+  document
+    .querySelectorAll("#exercise-list .block")
+    .forEach((b) => b.classList.remove("drag-over"));
   dragKey = null;
 }
 
 function onDragOver(e) {
   e.preventDefault();
   if (e.currentTarget.dataset.key === dragKey) return;
-  document.querySelectorAll("#exercise-list .block").forEach((b) => b.classList.remove("drag-over"));
+  document
+    .querySelectorAll("#exercise-list .block")
+    .forEach((b) => b.classList.remove("drag-over"));
   e.currentTarget.classList.add("drag-over");
 }
 
@@ -488,16 +688,21 @@ function onDrop(e) {
   e.preventDefault();
   const targetKey = e.currentTarget.dataset.key;
   if (!dragKey || dragKey === targetKey) return;
-  document.querySelectorAll("#exercise-list .block").forEach((b) => b.classList.remove("drag-over"));
+  document
+    .querySelectorAll("#exercise-list .block")
+    .forEach((b) => b.classList.remove("drag-over"));
 
-  const keys  = getCurrentKeys(currentSlot);
+  const keys = getCurrentKeys(currentSlot);
   const saved = loadOrder(currentSlot);
   const order = saved
-    ? [...saved.filter((k) => keys.includes(k)), ...keys.filter((k) => !saved.includes(k))]
+    ? [
+        ...saved.filter((k) => keys.includes(k)),
+        ...keys.filter((k) => !saved.includes(k)),
+      ]
     : [...keys];
 
   const from = order.indexOf(dragKey);
-  const to   = order.indexOf(targetKey);
+  const to = order.indexOf(targetKey);
   if (from === -1 || to === -1) return;
 
   order.splice(to, 0, order.splice(from, 1)[0]);
@@ -531,8 +736,8 @@ function onHandleTouchMove(e) {
 
   const parent = touchDragEl.parentNode;
   const blocks = [...parent.querySelectorAll(":scope > .block[data-key]")];
-  const from   = blocks.indexOf(touchDragEl);
-  const to     = blocks.indexOf(target);
+  const from = blocks.indexOf(touchDragEl);
+  const to = blocks.indexOf(target);
   if (from === -1 || to === -1) return;
 
   parent.insertBefore(touchDragEl, from < to ? target.nextSibling : target);
@@ -542,8 +747,9 @@ function onHandleTouchEnd() {
   if (!touchDragEl) return;
   touchDragEl.classList.remove("dragging");
 
-  const keys = [...document.querySelectorAll("#exercise-list .block[data-key]")]
-    .map((b) => b.dataset.key);
+  const keys = [
+    ...document.querySelectorAll("#exercise-list .block[data-key]"),
+  ].map((b) => b.dataset.key);
   saveOrder(currentSlot, keys);
 
   touchDragEl = null;
@@ -562,12 +768,13 @@ function toggleDone(key) {
 
 function updateProgress(slug) {
   const builtin = flatBuiltin(slug);
-  const custom  = loadCustom(slug);
+  const custom = loadCustom(slug);
   const removed = loadRemoved(slug);
-  const total   = builtin.filter((_, i) => !removed.has(i)).length + custom.length;
-  const done    =
-    builtin.filter((_, i) => !removed.has(i) && doneState[`${slug}-${i}`]).length +
-    custom.filter((_, i) => doneState[`${slug}-c${i}`]).length;
+  const total =
+    builtin.filter((_, i) => !removed.has(i)).length + custom.length;
+  const done =
+    builtin.filter((_, i) => !removed.has(i) && doneState[`${slug}-${i}`])
+      .length + custom.filter((_, i) => doneState[`${slug}-c${i}`]).length;
   const pct = total ? (done / total) * 100 : 0;
   document.getElementById("prog-fill").style.width = pct + "%";
   document.getElementById("prog-text").textContent = `${done} / ${total} done`;
@@ -576,10 +783,12 @@ function updateProgress(slug) {
 function resetDone() {
   if (!currentSlot) return;
   const builtin = flatBuiltin(currentSlot);
-  const custom  = loadCustom(currentSlot);
+  const custom = loadCustom(currentSlot);
   const removed = loadRemoved(currentSlot);
-  builtin.forEach((_, i) => { if (!removed.has(i)) delete doneState[`${currentSlot}-${i}`]; });
-  custom.forEach((_, i)  => delete doneState[`${currentSlot}-c${i}`]);
+  builtin.forEach((_, i) => {
+    if (!removed.has(i)) delete doneState[`${currentSlot}-${i}`];
+  });
+  custom.forEach((_, i) => delete doneState[`${currentSlot}-c${i}`]);
   saveDoneState();
   renderExercises(currentSlot);
   updateProgress(currentSlot);
@@ -588,7 +797,8 @@ function resetDone() {
 function updateClock() {
   const now = new Date();
   document.getElementById("clock").textContent =
-    String(now.getHours()).padStart(2, "0") + ":" +
+    String(now.getHours()).padStart(2, "0") +
+    ":" +
     String(now.getMinutes()).padStart(2, "0");
 }
 
