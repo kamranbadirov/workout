@@ -12,10 +12,11 @@
   --bg: #0a0a0a;
   --surface: #111;
   --line: #1e1e1e;
-  --muted: #444;
+  --muted: #888;
   --text: #e8e4dc;
   --accent: #c8f060;
   --warn: #ff6b35;
+  --signal: #ff2d2d;
   --done: #3a3a3a;
   --warn-surface: #130f0f;
   --warn-border: #2a1a1a;
@@ -59,7 +60,7 @@ header {
 }
 
 .slot-label {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -149,7 +150,7 @@ header {
 }
 
 .ex-num {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
   width: 18px;
   flex-shrink: 0;
@@ -196,7 +197,7 @@ header {
 }
 
 .ex-notes {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
   padding: 0 16px 12px 46px;
   line-height: 1.5;
@@ -205,9 +206,10 @@ header {
 
 /* SECTION HEADERS */
 .section-header {
-  font-size: 9px;
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: 0.2em;
-  color: var(--muted);
+  color: var(--signal);
   text-transform: uppercase;
   padding: 20px 0 8px;
   border-bottom: 1px solid var(--line);
@@ -367,7 +369,7 @@ header {
 }
 
 .hidden-note {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
   letter-spacing: 0.1em;
   text-align: center;
@@ -390,7 +392,7 @@ header {
 }
 
 .avoid-label {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.15em;
   color: var(--warn);
   text-transform: uppercase;
@@ -462,7 +464,7 @@ header {
 
 .signal-item strong {
   display: block;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #555;
@@ -559,7 +561,7 @@ body.landing header {
 
 .card-eyebrow {
   font-family: "DM Mono", monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
@@ -647,7 +649,7 @@ body.landing header {
   border: 1px solid var(--line);
   border-radius: 20px;
   font-family: "DM Mono", monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--muted);
   cursor: pointer;
@@ -751,7 +753,7 @@ body.landing header {
 }
 
 .result-muscle {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--muted);
   flex-shrink: 0;
@@ -779,7 +781,7 @@ body.landing header {
 }
 
 .results-count {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
   letter-spacing: 0.1em;
   padding: 4px 0 8px;
@@ -795,7 +797,7 @@ body.landing header {
 /* ─── BUILDER — SESSION ────────────────────────────────────────────────────── */
 
 .session-divider {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   color: var(--muted);
   text-transform: uppercase;
@@ -835,7 +837,7 @@ body.landing header {
   border: none;
   color: var(--muted);
   font-family: "DM Mono", monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
