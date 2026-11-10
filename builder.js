@@ -24,6 +24,7 @@ var PILL_MAP = {
   Legs: ["Quadriceps", "Hamstrings", "Glutes", "Calves"],
   Core: ["Core"],
   Full: ["Full Body"],
+  Stability: ["Stability"],
   Other: ["Full Body", "Cardio", "Rehab"],
 };
 

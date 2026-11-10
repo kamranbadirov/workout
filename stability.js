@@ -4,6 +4,7 @@ var currentFilter = 'All';
 var searchQuery   = '';
 
 var SESSION_KEY  = 'knee-stability-session';
+var ROUTINE_KEY  = 'knee-stability-routine';
 var NEXT_ID_KEY  = 'knee-stability-next-id';
 
 var session = [];
@@ -116,6 +117,7 @@ function loadRoutine(i) {
     });
   });
   saveSession();
+  try { localStorage.setItem(ROUTINE_KEY, routine.name); } catch (e) {}
   renderSession();
   updateBuilderProgress();
 }
@@ -187,8 +189,17 @@ function updateBuilderProgress() {
 // ─── Reset done ───────────────────────────────────────────────────────────────
 
 function resetBuilderDone() {
+  var name = null;
+  try { name = localStorage.getItem(ROUTINE_KEY); } catch (e) {}
+  var idx = (window.ROUTINES || []).findIndex(function(r) { return r.name === name; });
+  if (idx !== -1) {
+    loadRoutine(idx);
+    return;
+  }
   session.forEach(function(s) { delete doneState['builder-' + s.id]; });
   saveDoneState();
+  session = [];
+  saveSession();
   renderSession();
   updateBuilderProgress();
 }

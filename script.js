@@ -1,10 +1,10 @@
 const CONFIG = {
-  title: "KINETIC",
+  title: "Kinetic",
   bodyPart: "knee",
 };
 
 const REHAB_A = {
-  name: "REHAB A",
+  name: "Rehab A",
   isRehab: true,
   exercises: [
     {
@@ -38,7 +38,7 @@ const REHAB_A = {
         "Full range: drop heel below step level, rise all the way up. Slow and controlled on the way down.",
     },
   ],
-  previousLabel: "PHASE 1 · BEFORE 5 MAY",
+  previousLabel: "Phase 1, before 5 May",
   previous: [
     { name: "Quad Sets", spec: "3×10 · 5–10s hold", notes: "Press back of knee into floor. No leg lift." },
     { name: "TKE (band)", spec: "3×12–15 · slow lockout", notes: "Slow, full lockout — avoid snapping into extension." },
@@ -49,7 +49,7 @@ const REHAB_A = {
 };
 
 const REHAB_B = {
-  name: "REHAB B",
+  name: "Rehab B",
   isRehab: true,
   exercises: [
     {
@@ -83,7 +83,7 @@ const REHAB_B = {
         "Soft knee bend tracking over second toe. Grip the floor with toes if wobbling.",
     },
   ],
-  previousLabel: "PHASE 1 · BEFORE 5 MAY",
+  previousLabel: "Phase 1, before 5 May",
   previous: [
     { name: "Shallow Wall Sit", spec: "4×20–30s · 30–45° only", notes: "Back flat against wall. Stop at 45° — do not push past comfort." },
     { name: "Step-Ups (low)", spec: "3×8–10 / leg · no push-off", notes: "Lead leg only. No push-off from trailing foot." },
@@ -100,7 +100,7 @@ const SLOTS = {
     tabLabel: "Day 1",
     sections: [
       {
-        name: "CHEST",
+        name: "Chest",
         exercises: [
           { name: "Bench Press", spec: "4×6–8" },
           { name: "Incline Bench Press", spec: "3×8–10" },
@@ -110,7 +110,7 @@ const SLOTS = {
         ],
       },
       {
-        name: "ARMS",
+        name: "Arms",
         exercises: [
           { name: "Dips", spec: "3×8–12" },
           { name: "Triceps Pushdown (cable)", spec: "3×12–15" },
@@ -129,7 +129,7 @@ const SLOTS = {
     tabLabel: "Day 2",
     sections: [
       {
-        name: "BACK",
+        name: "Back",
         exercises: [
           { name: "Pull-ups", spec: "4 × max" },
           { name: "Deadlift", spec: "4×4–6" },
@@ -154,12 +154,12 @@ const SLOTS = {
     avoid: [],
   },
   day3: {
-    label: "Legs · ABS · Rehab B",
+    label: "Legs · Abs · Rehab B",
     title: "Day 3",
     tabLabel: "Day 3",
     sections: [
       {
-        name: "LEGS",
+        name: "Legs",
         exercises: [
           { name: "Squat", spec: "4×6–8" },
           { name: "Seated Leg Press", spec: "3×10–12 · moderate depth" },
@@ -175,14 +175,14 @@ const SLOTS = {
         ],
       },
       {
-        name: "ARMS",
+        name: "Arms",
         exercises: [
           { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
           { name: "Hammer Curls", spec: "3×10–12" },
         ],
       },
       {
-        name: "ABS",
+        name: "Abs",
         exercises: [{ name: "Hanging Toes to Bar", spec: "3×10–15" }],
       },
       REHAB_A,
@@ -200,21 +200,21 @@ const SLOTS = {
     tabLabel: "Day 4",
     sections: [
       {
-        name: "CHEST",
+        name: "Chest",
         exercises: [
           { name: "Chest Press (machine)", spec: "3×10–12" },
           { name: "Cable Chest Fly", spec: "3×12–15" },
         ],
       },
       {
-        name: "BACK",
+        name: "Back",
         exercises: [
           { name: "Machine Rows", spec: "3×10–12" },
           { name: "Lat Pulldown", spec: "3×10–12" },
         ],
       },
       {
-        name: "ARMS",
+        name: "Arms",
         exercises: [
           { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
           { name: "Hammer Curls", spec: "3×10–12" },
@@ -222,7 +222,7 @@ const SLOTS = {
         ],
       },
       {
-        name: "ABS",
+        name: "Abs",
         exercises: [
           { name: "Abs Circuit", spec: "5 min" },
           { name: "Hanging Toes to Bar", spec: "3×10–15" },
@@ -389,7 +389,7 @@ function previousBlock(sec) {
     </div>`,
     )
     .join("");
-  return `<div class="previous-divider">${sec.previousLabel || "BEFORE"}</div>${items}`;
+  return `<div class="previous-divider">${sec.previousLabel || "Before"}</div>${items}`;
 }
 
 function renderExercises(slug) {
@@ -479,7 +479,7 @@ function renderExercises(slug) {
   if (savedOrder)
     html += `<div class="hidden-note" onclick="resetOrder('${slug}')">reordered · reset order</div>`;
 
-  html += `<div id="add-ex-wrap"><button class="add-ex-btn" onclick="showAddForm('${slug}')">+ add exercise</button></div>`;
+  html += `<div id="add-ex-wrap"><button class="add-ex-btn" onclick="showAddForm('${slug}')">+ Add exercise</button></div>`;
   document.getElementById("exercise-list").innerHTML = html;
 
   // Attach drag listeners after render

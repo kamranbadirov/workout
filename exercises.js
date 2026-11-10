@@ -185,6 +185,7 @@ window.EXERCISES = [
   { name: "Short Arc Quad",                 muscle: "Stability", bodyPart: "Knee",     equipment: "Bodyweight", spec: "3×15 · full lockout" },
   { name: "Shallow Wall Sit",               muscle: "Stability", bodyPart: "Knee",     equipment: "Bodyweight", spec: "4×20–30s · 30–45° only" },
   { name: "Step Down (controlled)",         muscle: "Stability", bodyPart: "Knee",     equipment: "Bodyweight", spec: "3×8–10 / leg · slow" },
+  { name: "Eccentric Step-Down",            muscle: "Stability", bodyPart: "Knee",     equipment: "Bodyweight", spec: "3×8 / leg · 3–4s down" },
   { name: "Step Up (low)",                  muscle: "Stability", bodyPart: "Knee",     equipment: "Bodyweight", spec: "3×10 / leg · no push-off" },
   { name: "VMO Lunge (shallow)",            muscle: "Stability", bodyPart: "Knee",     equipment: "Bodyweight", spec: "3×10 / leg · 30° only" },
   { name: "Lateral Band Walk",              muscle: "Stability", bodyPart: "Knee",     equipment: "Band",       spec: "3×15 / dir" },

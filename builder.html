@@ -3,11 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KINETIC — Builder</title>
+    <title>Kinetic — Builder</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&display=swap" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="theme-things.css" />
+    <link rel="stylesheet" href="theme-gentler.css" />
+    <script src="theme.js"></script>
     <script src="exercises.js"></script>
     <link rel="icon" type="image/x-icon" href="kinetic.png" />
 
@@ -15,14 +19,20 @@
   <body>
     <header>
       <a href="index.html" class="back-btn">←</a>
-      <div class="logo">KINETIC</div>
-      <div id="clock">--:--</div>
+      <button type="button" class="logo" data-mode-toggle title="Toggle dark mode">Kinetic</button>
+      <div class="header-end">
+        <div class="theme-switch" role="group" aria-label="Theme">
+          <button type="button" data-theme-option="gentler">Gentler</button>
+          <button type="button" data-theme-option="things">Things</button>
+        </div>
+        <div id="clock">--:--</div>
+      </div>
     </header>
 
     <div class="container">
 
       <!-- SESSION (top) -->
-      <div class="session-divider">YOUR SESSION</div>
+      <div class="session-divider">Your session</div>
 
       <div class="progress-wrap">
         <div class="progress-bar">
@@ -35,7 +45,7 @@
         <div class="empty-session">no exercises yet — search below to add</div>
       </div>
 
-      <button class="reset-btn" onclick="resetBuilderDone()">↺ reset session</button>
+      <button class="reset-btn" onclick="resetBuilderDone()">Reset session</button>
 
       <!-- SEARCH (below session) -->
       <div class="search-section">
@@ -48,6 +58,7 @@
           <button type="button" class="filter-pill" data-filter="Legs">Legs</button>
           <button type="button" class="filter-pill" data-filter="Core">Core</button>
           <button type="button" class="filter-pill" data-filter="Full">Full Body</button>
+          <button type="button" class="filter-pill" data-filter="Stability">Stability</button>
           <button type="button" class="filter-pill" data-filter="Other">Other</button>
         </div>
 
@@ -69,7 +80,7 @@
 
     </div>
 
-    <button class="contact-btn" onclick="openContact()">contact</button>
+    <button class="contact-btn" onclick="openContact()">Contact</button>
     <div class="contact-overlay" id="contact-overlay" onclick="closeContact(event)">
       <div class="contact-modal">
         <div class="contact-header">

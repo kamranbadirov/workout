@@ -1044,3 +1044,39 @@ body.landing header {
   color: var(--accent);
   letter-spacing: 0.05em;
 }
+
+.header-end {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-switch {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.theme-switch button {
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font: inherit;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.theme-switch button.active {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+button.logo {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
