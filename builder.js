@@ -51,10 +51,17 @@ function getFilteredExercises() {
   var muscles = PILL_MAP[currentFilter];
   var q = searchQuery.toLowerCase().trim();
   return window.EXERCISES.filter(function (ex) {
-    var muscleMatch = !muscles || muscles.indexOf(ex.muscle) !== -1;
+    var groups = [].concat(ex.muscle);
+    var muscleMatch = !muscles || groups.some(function (g) { return muscles.indexOf(g) !== -1; });
     var nameMatch = !q || ex.name.toLowerCase().indexOf(q) !== -1;
     return muscleMatch && nameMatch;
   });
+}
+
+function badgeFor(groups, wanted) {
+  groups = [].concat(groups);
+  var hit = wanted && groups.find(function (g) { return wanted.indexOf(g) !== -1; });
+  return hit || groups[0];
 }
 
 function renderResults() {
@@ -77,7 +84,7 @@ function renderResults() {
       ex.name +
       "</span>" +
       '<span class="result-muscle">' +
-      ex.muscle.toUpperCase() +
+      badgeFor(ex.muscle, PILL_MAP[currentFilter]).toUpperCase() +
       "</span>" +
       '<button class="result-add" aria-label="add">+</button>' +
       "</div>";

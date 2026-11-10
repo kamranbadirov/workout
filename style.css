@@ -1080,3 +1080,20 @@ button.logo {
   padding: 0;
   cursor: pointer;
 }
+
+html[data-theme="kinetic"] .logo {
+  text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+  html[data-theme="kinetic"] .logo {
+    font-size: 15px;
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (max-width: 400px) {
+  #clock {
+    display: none;
+  }
+}

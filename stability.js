@@ -16,7 +16,7 @@ var doneState        = JSON.parse(localStorage.getItem(BUILDER_DONE_KEY) || '{}'
 
 // Only stability exercises
 var STABILITY_EXERCISES = window.EXERCISES.filter(function(ex) {
-  return ex.muscle === 'Stability';
+  return [].concat(ex.muscle).indexOf('Stability') !== -1;
 });
 
 // ─── Persistence ──────────────────────────────────────────────────────────────
@@ -41,7 +41,7 @@ function saveDoneState() {
 function getFilteredExercises() {
   var q = searchQuery.toLowerCase().trim();
   return STABILITY_EXERCISES.filter(function(ex) {
-    var partMatch = currentFilter === 'All' || ex.bodyPart === currentFilter;
+    var partMatch = currentFilter === 'All' || [].concat(ex.bodyPart).indexOf(currentFilter) !== -1;
     var nameMatch = !q || ex.name.toLowerCase().indexOf(q) !== -1;
     return partMatch && nameMatch;
   });
@@ -60,7 +60,7 @@ function renderResults() {
   results.forEach(function(ex) {
     html += '<div class="result-item" onclick="addToSession(' + JSON.stringify(ex).replace(/"/g, '&quot;') + ')">'
       + '<span class="result-name">' + ex.name + '</span>'
-      + '<span class="result-muscle">' + ex.bodyPart.toUpperCase() + '</span>'
+      + '<span class="result-muscle">' + (currentFilter !== 'All' && [].concat(ex.bodyPart).indexOf(currentFilter) !== -1 ? currentFilter : [].concat(ex.bodyPart)[0]).toUpperCase() + '</span>'
       + '<button class="result-add" aria-label="add">+</button>'
       + '</div>';
   });

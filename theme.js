@@ -1,7 +1,7 @@
 (function () {
   var KEY = "kinetic-theme";
   var MODE_KEY = "kinetic-mode";
-  var THEMES = ["things", "gentler"];
+  var THEMES = ["gentler", "kinetic", "things"];
   var root = document.documentElement;
   var media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
 
