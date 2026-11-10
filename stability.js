@@ -83,6 +83,43 @@ function addToSession(ex) {
   updateBuilderProgress();
 }
 
+function renderRoutines() {
+  var el = document.getElementById('routines');
+  var routines = window.ROUTINES || [];
+  el.innerHTML = routines.map(function(r, i) {
+    return '<button type="button" class="routine-card" onclick="loadRoutine(' + i + ')">'
+      + '<span class="routine-name">' + r.name + '</span>'
+      + '<span class="routine-count">' + r.exercises.length + ' exercises</span>'
+      + '</button>';
+  }).join('');
+}
+
+function loadRoutine(i) {
+  var routine = window.ROUTINES[i];
+  session.forEach(function(s) { delete doneState['builder-' + s.id]; });
+  saveDoneState();
+  session = [];
+  routine.exercises.forEach(function(entry) {
+    var name = typeof entry === 'string' ? entry : entry.name;
+    var ex = STABILITY_EXERCISES.find(function(e) { return e.name === name; })
+      || { name: name, muscle: 'Stability', bodyPart: '', equipment: '', spec: '' };
+    if (typeof entry !== 'string' && entry.spec) ex = Object.assign({}, ex, { spec: entry.spec });
+    var notes = typeof entry === 'string' ? '' : (entry.notes || '');
+    session.push({
+      id:        nextId++,
+      name:      ex.name,
+      muscle:    ex.muscle,
+      bodyPart:  ex.bodyPart,
+      equipment: ex.equipment,
+      spec:      ex.spec,
+      notes:     notes,
+    });
+  });
+  saveSession();
+  renderSession();
+  updateBuilderProgress();
+}
+
 // ─── Spec editing ─────────────────────────────────────────────────────────────
 
 function editSpec(id) {
@@ -182,6 +219,7 @@ function renderSession() {
       + '<button class="ex-delete-btn" onclick="event.stopPropagation();deleteSessionItem(' + item.id + ')" aria-label="remove">×</button>'
       + '<button class="ex-done-btn" aria-label="mark done">✓</button>'
       + '</div>'
+      + (item.notes ? '<div class="ex-notes">' + item.notes + '</div>' : '')
       + '</div>'
       + '</div>';
   });
@@ -315,6 +353,7 @@ function updateClock() {
 // ─── Init ─────────────────────────────────────────────────────────────────────
 
 loadSession();
+renderRoutines();
 renderResults();
 renderSession();
 updateBuilderProgress();

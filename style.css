@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap");
-
 *,
 *::before,
 *::after {
@@ -21,6 +19,11 @@
   --warn-surface: #130f0f;
   --warn-border: #2a1a1a;
   --warn-line: #1e1616;
+  --line-strong: #333;
+  --line-hover: #444;
+  --on-accent: #0a0a0a;
+  --fs-xs: 12px;
+  --fs-sm: 13px;
 }
 
 body {
@@ -60,7 +63,7 @@ header {
 }
 
 .slot-label {
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -90,12 +93,13 @@ header {
 
 .tab {
   flex: 1;
-  padding: 10px 8px;
+  padding: 10px 4px;
+  white-space: nowrap;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 6px;
   font-family: "DM Mono", monospace;
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.05em;
   color: var(--muted);
   cursor: pointer;
@@ -104,13 +108,13 @@ header {
 }
 
 .tab:hover {
-  border-color: #333;
+  border-color: var(--line-strong);
   color: var(--text);
 }
 
 .tab.active {
   background: var(--accent);
-  color: #0a0a0a;
+  color: var(--on-accent);
   border-color: var(--accent);
   font-weight: 500;
 }
@@ -150,7 +154,7 @@ header {
 }
 
 .ex-num {
-  font-size: 11px;
+  font-size: var(--fs-xs);
   color: var(--muted);
   width: 18px;
   flex-shrink: 0;
@@ -165,39 +169,52 @@ header {
 }
 
 .ex-spec {
-  font-size: 11px;
+  font-size: var(--fs-xs);
   color: var(--accent);
   letter-spacing: 0.04em;
   flex-shrink: 0;
 }
 
 .ex-done-btn {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 1.5px solid var(--muted);
+  position: relative;
+  isolation: isolate;
+  width: 40px;
+  height: 40px;
+  margin: -9px -9px -9px 0;
+  border: none;
   background: none;
   cursor: pointer;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.15s;
   color: transparent;
-  font-size: 11px;
+  font-size: var(--fs-xs);
 }
 
-.ex-done-btn:hover {
+.ex-done-btn::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  z-index: -1;
+  border-radius: 50%;
+  border: 1.5px solid var(--muted);
+  transition: all 0.15s;
+}
+
+.ex-done-btn:hover::before {
   border-color: var(--accent);
 }
 .ex.done .ex-done-btn {
+  color: var(--muted);
+}
+.ex.done .ex-done-btn::before {
   background: var(--done);
   border-color: var(--done);
-  color: var(--muted);
 }
 
 .ex-notes {
-  font-size: 11px;
+  font-size: var(--fs-sm);
   color: var(--muted);
   padding: 0 16px 12px 46px;
   line-height: 1.5;
@@ -209,7 +226,7 @@ header {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: var(--signal);
+  color: var(--text);
   text-transform: uppercase;
   padding: 20px 0 8px;
   border-bottom: 1px solid var(--line);
@@ -222,6 +239,29 @@ header {
 
 .ex-rehab {
   border-left: 2px solid var(--accent);
+}
+
+.previous-divider {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding: 16px 0 8px;
+  border-top: 1px dashed var(--line);
+  margin-top: 10px;
+}
+
+.ex-previous {
+  opacity: 0.45;
+  margin-bottom: 4px;
+}
+
+.ex-previous .ex-head {
+  cursor: default;
+}
+
+.ex-previous .ex-notes {
+  padding-left: 16px;
 }
 
 /* DRAG */
@@ -255,18 +295,19 @@ header {
 }
 
 .ex-delete-btn {
-  width: 18px;
-  height: 18px;
+  width: 40px;
+  height: 40px;
+  margin: -9px 0;
   border: none;
   background: none;
   cursor: pointer;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 16px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.4;
+  opacity: 0.6;
   padding: 0;
   transition: all 0.15s;
 }
@@ -287,7 +328,7 @@ header {
   border-radius: 8px;
   color: var(--muted);
   font-family: "DM Mono", monospace;
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.1em;
   cursor: pointer;
   transition: all 0.15s;
@@ -328,7 +369,7 @@ header {
 
 .add-ex-input::placeholder {
   color: var(--muted);
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.05em;
 }
 
@@ -341,11 +382,11 @@ header {
 .add-ex-confirm {
   padding: 6px 16px;
   background: var(--accent);
-  color: #0a0a0a;
+  color: var(--on-accent);
   border: none;
   border-radius: 4px;
   font-family: "DM Mono", monospace;
-  font-size: 11px;
+  font-size: var(--fs-xs);
   font-weight: 500;
   cursor: pointer;
   letter-spacing: 0.05em;
@@ -358,7 +399,7 @@ header {
   border: 1px solid var(--line);
   border-radius: 4px;
   font-family: "DM Mono", monospace;
-  font-size: 11px;
+  font-size: var(--fs-xs);
   cursor: pointer;
   letter-spacing: 0.05em;
   transition: color 0.15s;
@@ -369,7 +410,7 @@ header {
 }
 
 .hidden-note {
-  font-size: 11px;
+  font-size: var(--fs-xs);
   color: var(--muted);
   letter-spacing: 0.1em;
   text-align: center;
@@ -392,7 +433,7 @@ header {
 }
 
 .avoid-label {
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.15em;
   color: var(--warn);
   text-transform: uppercase;
@@ -400,8 +441,8 @@ header {
 }
 
 .avoid-item {
-  font-size: 12px;
-  color: #888;
+  font-size: var(--fs-sm);
+  color: var(--muted);
   padding: 4px 0;
   border-bottom: 1px solid var(--warn-line);
   display: flex;
@@ -439,36 +480,8 @@ header {
 }
 
 .progress-text {
-  font-size: 11px;
+  font-size: var(--fs-sm);
   color: var(--muted);
-}
-
-/* SIGNAL */
-.signal {
-  display: flex;
-  gap: 6px;
-  margin-top: 28px;
-}
-
-.signal-item {
-  flex: 1;
-  padding: 12px 10px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  font-size: 11px;
-  color: var(--muted);
-  text-align: center;
-  line-height: 1.4;
-}
-
-.signal-item strong {
-  display: block;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #555;
-  margin-bottom: 4px;
 }
 
 .reset-btn {
@@ -481,19 +494,46 @@ header {
   border-radius: 6px;
   color: var(--muted);
   font-family: "DM Mono", monospace;
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.1em;
   cursor: pointer;
   transition: all 0.15s;
 }
 
 .reset-btn:hover {
-  border-color: #444;
+  border-color: var(--line-hover);
   color: var(--text);
 }
 
 .hidden {
   display: none !important;
+}
+
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .ex-head {
+    display: grid;
+    grid-template-columns: 16px 18px 1fr auto auto;
+    grid-template-areas:
+      "handle num name del done"
+      "handle num spec del done";
+    column-gap: 10px;
+    row-gap: 3px;
+  }
+  .ex-head .drag-handle { grid-area: handle; }
+  .ex-head .ex-num { grid-area: num; }
+  .ex-head .ex-name { grid-area: name; }
+  .ex-head .ex-spec { grid-area: spec; justify-self: start; }
+  .ex-head .ex-delete-btn { grid-area: del; }
+  .ex-head .ex-done-btn { grid-area: done; }
+  .ex-previous .ex-head {
+    grid-template-columns: 1fr;
+    grid-template-areas: "name" "spec";
+  }
 }
 
 /* ─── LANDING PAGE ─────────────────────────────────────────────────────────── */
@@ -561,7 +601,7 @@ body.landing header {
 
 .card-eyebrow {
   font-family: "DM Mono", monospace;
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
@@ -586,7 +626,7 @@ body.landing header {
 
 .card-desc {
   font-family: "DM Mono", monospace;
-  font-size: 11px;
+  font-size: var(--fs-sm);
   color: var(--muted);
   line-height: 1.5;
 }
@@ -649,7 +689,7 @@ body.landing header {
   border: 1px solid var(--line);
   border-radius: 20px;
   font-family: "DM Mono", monospace;
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.08em;
   color: var(--muted);
   cursor: pointer;
@@ -659,13 +699,13 @@ body.landing header {
 }
 
 .filter-pill:hover {
-  border-color: #333;
+  border-color: var(--line-strong);
   color: var(--text);
 }
 
 .filter-pill.active {
   background: var(--accent);
-  color: #0a0a0a;
+  color: var(--on-accent);
   border-color: var(--accent);
   font-weight: 500;
 }
@@ -696,7 +736,7 @@ body.landing header {
 
 .search-input::placeholder {
   color: var(--muted);
-  font-size: 11px;
+  font-size: var(--fs-xs);
 }
 
 /* ─── BUILDER — RESULTS ────────────────────────────────────────────────────── */
@@ -753,7 +793,7 @@ body.landing header {
 }
 
 .result-muscle {
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.08em;
   color: var(--muted);
   flex-shrink: 0;
@@ -781,14 +821,14 @@ body.landing header {
 }
 
 .results-count {
-  font-size: 11px;
+  font-size: var(--fs-xs);
   color: var(--muted);
   letter-spacing: 0.1em;
   padding: 4px 0 8px;
 }
 
 .results-empty {
-  font-size: 11px;
+  font-size: var(--fs-sm);
   color: var(--muted);
   text-align: center;
   padding: 20px 0;
@@ -797,7 +837,7 @@ body.landing header {
 /* ─── BUILDER — SESSION ────────────────────────────────────────────────────── */
 
 .session-divider {
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.2em;
   color: var(--muted);
   text-transform: uppercase;
@@ -806,8 +846,53 @@ body.landing header {
   margin-bottom: 8px;
 }
 
+.routines-divider {
+  padding-top: 0;
+}
+
+.routines {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.routine-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: "DM Mono", monospace;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.routine-card:hover {
+  border-color: var(--accent);
+}
+
+.routine-name {
+  font-family: "Syne", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.routine-count {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
 .empty-session {
-  font-size: 11px;
+  font-size: var(--fs-sm);
   color: var(--muted);
   text-align: center;
   padding: 28px 0;
@@ -820,7 +905,7 @@ body.landing header {
   border-bottom: 1px solid var(--accent);
   color: var(--accent);
   font-family: "DM Mono", monospace;
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.04em;
   outline: none;
   width: 80px;
@@ -837,7 +922,7 @@ body.landing header {
   border: none;
   color: var(--muted);
   font-family: "DM Mono", monospace;
-  font-size: 11px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
@@ -934,7 +1019,7 @@ body.landing header {
   width: 100%;
   padding: 12px;
   background: var(--accent);
-  color: #0a0a0a;
+  color: var(--on-accent);
   border: none;
   border-radius: 6px;
   font-family: "DM Mono", monospace;

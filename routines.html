@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KINETIC — Stability</title>
+    <title>KINETIC — Routines</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" />
     <link rel="stylesheet" href="style.css" />
     <script src="exercises.js"></script>
+    <script src="routines.js"></script>
     <link rel="icon" type="image/x-icon" href="kinetic.png" />
 
   </head>
@@ -17,6 +21,9 @@
     </header>
 
     <div class="container">
+
+      <div class="session-divider routines-divider">MY ROUTINES</div>
+      <div class="routines" id="routines"></div>
 
       <!-- SESSION (top) -->
       <div class="session-divider">YOUR SESSION</div>
@@ -37,14 +44,14 @@
       <!-- SEARCH (below session) -->
       <div class="search-section">
         <div class="filter-pills" id="filter-pills">
-          <div class="filter-pill active" data-filter="All">All</div>
-          <div class="filter-pill" data-filter="Knee">Knee</div>
-          <div class="filter-pill" data-filter="Hip">Hip</div>
-          <div class="filter-pill" data-filter="Shoulder">Shoulder</div>
-          <div class="filter-pill" data-filter="Ankle">Ankle</div>
-          <div class="filter-pill" data-filter="Core">Core</div>
-          <div class="filter-pill" data-filter="Full Body">Full Body</div>
-          <div class="filter-pill" data-filter="Posture">Posture</div>
+          <button type="button" class="filter-pill active" data-filter="All">All</button>
+          <button type="button" class="filter-pill" data-filter="Knee">Knee</button>
+          <button type="button" class="filter-pill" data-filter="Hip">Hip</button>
+          <button type="button" class="filter-pill" data-filter="Shoulder">Shoulder</button>
+          <button type="button" class="filter-pill" data-filter="Ankle">Ankle</button>
+          <button type="button" class="filter-pill" data-filter="Core">Core</button>
+          <button type="button" class="filter-pill" data-filter="Full Body">Full Body</button>
+          <button type="button" class="filter-pill" data-filter="Posture">Posture</button>
         </div>
 
         <div class="search-wrap">

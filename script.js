@@ -1,25 +1,12 @@
 const CONFIG = {
   title: "KINETIC",
   bodyPart: "knee",
-  signals: [
-    { label: "Stop if", text: "Sharp anterior pain" },
-    { label: "Stop if", text: "Swelling next day ↑" },
-    { label: "Ice after", text: "10–15 min" },
-  ],
 };
 
 const REHAB_A = {
   name: "REHAB A",
   isRehab: true,
   exercises: [
-    // ──────────────── PHASE 1 ────────────────
-    // { name: "Quad Sets",                spec: "3×10 · 5–10s hold",      notes: "Press back of knee into floor. No leg lift." },
-    // { name: "TKE (band)",               spec: "3×12–15 · slow lockout", notes: "Slow, full lockout — avoid snapping into extension." },
-    // { name: "Straight Leg Raises",      spec: "3×10–12 · 2s up/down",   notes: "Lock knee fully before lifting. Toes pointed up." },
-    // { name: "Glute Bridge",             spec: "3×12–15 · 2s squeeze",   notes: "Drive through heels. Do not hyperextend lower back at top." },
-    // { name: "Side-Lying Hip Abduction", spec: "2–3×12–15",              notes: "Keep pelvis stacked, do not rotate forward during lift." },
-    // ──────────────── PHASE 1 ────────────────
-    // ──────────────── PHASE 2 ────────────────
     {
       name: "Step-ups (low box)",
       spec: "3×10/leg",
@@ -51,32 +38,20 @@ const REHAB_A = {
         "Full range: drop heel below step level, rise all the way up. Slow and controlled on the way down.",
     },
   ],
+  previousLabel: "PHASE 1 · BEFORE 5 MAY",
+  previous: [
+    { name: "Quad Sets", spec: "3×10 · 5–10s hold", notes: "Press back of knee into floor. No leg lift." },
+    { name: "TKE (band)", spec: "3×12–15 · slow lockout", notes: "Slow, full lockout — avoid snapping into extension." },
+    { name: "Straight Leg Raises", spec: "3×10–12 · 2s up/down", notes: "Lock knee fully before lifting. Toes pointed up." },
+    { name: "Glute Bridge", spec: "3×12–15 · 2s squeeze", notes: "Drive through heels. Do not hyperextend lower back at top." },
+    { name: "Side-Lying Hip Abduction", spec: "2–3×12–15", notes: "Keep pelvis stacked, do not rotate forward during lift." },
+  ],
 };
 
 const REHAB_B = {
   name: "REHAB B",
   isRehab: true,
   exercises: [
-    // ──────────────── PHASE 1 ────────────────
-    // {
-    //   name: "Shallow Wall Sit",
-    //   spec: "4×20–30s · 30–45° only",
-    //   notes: "Back flat against wall. Stop at 45° — do not push past comfort.",
-    // },
-    // {
-    //   name: "Step-Ups (low)",
-    //   spec: "3×8–10 / leg · no push-off",
-    //   notes: "Lead leg only. No push-off from trailing foot.",
-    // },
-    // {
-    //   name: "Romanian Deadlift",
-    //   spec: "3×8–10 · hip-dominant",
-    //   notes: "Hinge at hips, soft knee bend. Bar stays close to legs.",
-    // },
-    // { name: "Hamstring Curl", spec: "3×10–12" },
-    // { name: "Calf Raises", spec: "3×12–15" },
-    // ──────────────── PHASE 1 ────────────────
-    // ──────────────── PHASE 2 ────────────────
     {
       name: "Single-leg RDL",
       spec: "3×8 / leg",
@@ -108,38 +83,21 @@ const REHAB_B = {
         "Soft knee bend tracking over second toe. Grip the floor with toes if wobbling.",
     },
   ],
+  previousLabel: "PHASE 1 · BEFORE 5 MAY",
+  previous: [
+    { name: "Shallow Wall Sit", spec: "4×20–30s · 30–45° only", notes: "Back flat against wall. Stop at 45° — do not push past comfort." },
+    { name: "Step-Ups (low)", spec: "3×8–10 / leg · no push-off", notes: "Lead leg only. No push-off from trailing foot." },
+    { name: "Romanian Deadlift", spec: "3×8–10 · hip-dominant", notes: "Hinge at hips, soft knee bend. Bar stays close to legs." },
+    { name: "Hamstring Curl", spec: "3×10–12" },
+    { name: "Calf Raises", spec: "3×12–15" },
+  ],
 };
 
 const SLOTS = {
-  morning: {
-    label: "Daily",
-    title: "Morning",
-    tabLabel: "Morning",
-    autoSlotDays: null,
-    exercises: [
-      { name: "Neck Work", spec: "3 × 15 each" },
-      { name: "Reverse Curls", spec: "3 × 5 each" },
-      { name: "Push-ups", spec: "100" },
-      { name: "Pull-ups", spec: "3 × max" },
-      { name: "Plank", spec: "3 × 30–60s" },
-      {
-        name: "Quad Sets",
-        spec: "2 × 10 · 5s hold",
-        notes: "Press back of knee into floor. No leg lift.",
-      },
-      {
-        name: "Light TKE",
-        spec: "2 × 15",
-        notes: "Slow, full lockout — avoid snapping into extension.",
-      },
-    ],
-    avoid: ["Explosive movements", "Deep knee bending (joint stiff early AM)"],
-  },
   day1: {
     label: "Chest · Triceps · Rehab A",
     title: "Day 1",
     tabLabel: "Day 1",
-    autoSlotDays: [1],
     sections: [
       {
         name: "CHEST",
@@ -169,7 +127,6 @@ const SLOTS = {
     label: "Back · Biceps · Rehab A",
     title: "Day 2",
     tabLabel: "Day 2",
-    autoSlotDays: [2],
     sections: [
       {
         name: "BACK",
@@ -180,7 +137,8 @@ const SLOTS = {
           { name: "Seated Cable Rows", spec: "3×10–12" },
           { name: "Machine Rows", spec: "3×12–15" },
           { name: "Face Pulls", spec: "3×15–20" },
-          { name: "Shoulder Shrugs", spec: "3×12–15" },
+          { name: "Shoulder Shrugs", spec: "3×8–12 · heavy" },
+          { name: "Lateral Raises", spec: "3×8–12" },
         ],
       },
       {
@@ -199,7 +157,6 @@ const SLOTS = {
     label: "Legs · ABS · Rehab B",
     title: "Day 3",
     tabLabel: "Day 3",
-    autoSlotDays: [3],
     sections: [
       {
         name: "LEGS",
@@ -241,7 +198,6 @@ const SLOTS = {
     label: "Full Body · Rehab A",
     title: "Day 4",
     tabLabel: "Day 4",
-    autoSlotDays: [4, 5],
     sections: [
       {
         name: "CHEST",
@@ -378,32 +334,13 @@ function getExByKey(slug, key) {
 
 // ─── Auto-slot ─────────────────────────────────────────────────────────────────
 
-function getAutoSlot() {
-  const h = new Date().getHours();
-  const day = new Date().getDay();
-  if (h < 10) return "morning";
-  for (const [slug, s] of Object.entries(SLOTS)) {
-    if (s.autoSlotDays && s.autoSlotDays.includes(day)) return slug;
-  }
-  return "morning";
-}
-
 // ─── Render ────────────────────────────────────────────────────────────────────
 
 function renderTabs() {
   document.getElementById("tab-container").innerHTML = Object.entries(SLOTS)
     .map(
       ([slug, s]) =>
-        `<div class="tab" data-slot="${slug}" onclick="setSlot('${slug}')">${s.tabLabel}</div>`,
-    )
-    .join("");
-}
-
-function renderSignals() {
-  document.getElementById("signal-section").innerHTML = CONFIG.signals
-    .map(
-      (sig) =>
-        `<div class="signal-item"><strong>${sig.label}</strong>${sig.text}</div>`,
+        `<button type="button" class="tab" data-slot="${slug}" onclick="setSlot('${slug}')">${s.tabLabel}</button>`,
     )
     .join("");
 }
@@ -436,6 +373,23 @@ function exBlock(slug, key, displayNum, ex, isCustom, isRehab, builtinIdx) {
       ${ex.notes ? `<div class="ex-notes">${ex.notes}</div>` : ""}
     </div>
   </div>`;
+}
+
+function previousBlock(sec) {
+  if (!sec.previous || !sec.previous.length) return "";
+  const items = sec.previous
+    .map(
+      (ex) => `
+    <div class="ex ex-previous">
+      <div class="ex-head">
+        <span class="ex-name">${ex.name}</span>
+        <span class="ex-spec">${ex.spec}</span>
+      </div>
+      ${ex.notes ? `<div class="ex-notes">${ex.notes}</div>` : ""}
+    </div>`,
+    )
+    .join("");
+  return `<div class="previous-divider">${sec.previousLabel || "BEFORE"}</div>${items}`;
 }
 
 function renderExercises(slug) {
@@ -491,6 +445,7 @@ function renderExercises(slug) {
         if (secHtml) {
           html += `<div class="section-header${firstSection ? " first" : ""}">${sec.name}</div>`;
           html += secHtml;
+          html += previousBlock(sec);
           firstSection = false;
         }
       });
@@ -806,7 +761,6 @@ function updateClock() {
 document.getElementById("app-title").textContent = CONFIG.title;
 document.title = CONFIG.title;
 renderTabs();
-renderSignals();
 updateClock();
 setInterval(updateClock, 10000);
-setSlot(getAutoSlot());
+setSlot("day1");
