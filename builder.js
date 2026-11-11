@@ -82,6 +82,7 @@ function renderResults() {
       ')">' +
       '<span class="result-name">' +
       ex.name +
+      videoLink(ex.name) +
       "</span>" +
       '<span class="result-muscle">' +
       badgeFor(ex.muscle, PILL_MAP[currentFilter]).toUpperCase() +
@@ -192,6 +193,8 @@ function resetBuilderDone() {
     delete doneState["builder-" + s.id];
   });
   saveDoneState();
+  session = [];
+  saveSession();
   renderSession();
   updateBuilderProgress();
 }
@@ -231,6 +234,7 @@ function renderSession() {
       "</span>" +
       '<span class="ex-name">' +
       item.name +
+      videoLink(item.name) +
       "</span>" +
       '<span class="ex-spec" onclick="event.stopPropagation();editSpec(' +
       item.id +
@@ -242,6 +246,7 @@ function renderSession() {
       ')" aria-label="remove">×</button>' +
       '<button class="ex-done-btn" aria-label="mark done">✓</button>' +
       "</div>" +
+      (cueFor(item.name) ? '<div class="ex-notes">' + cueFor(item.name) + "</div>" : "") +
       "</div>" +
       "</div>";
   });

@@ -365,12 +365,12 @@ function exBlock(slug, key, displayNum, ex, isCustom, isRehab, builtinIdx) {
       <div class="ex-head" onclick="toggleDone('${key}')">
         <span class="drag-handle" aria-label="drag">⠿</span>
         <span class="ex-num">${String(displayNum).padStart(2, "0")}</span>
-        <span class="ex-name">${ex.name}</span>
+        <span class="ex-name">${ex.name}${videoLink(ex.name)}</span>
         <span class="ex-spec">${ex.spec}</span>
         ${deleteBtn}
         <button class="ex-done-btn" aria-label="mark done">✓</button>
       </div>
-      ${ex.notes ? `<div class="ex-notes">${ex.notes}</div>` : ""}
+      ${cueFor(ex.name, ex.notes) ? `<div class="ex-notes">${cueFor(ex.name, ex.notes)}</div>` : ""}
     </div>
   </div>`;
 }
@@ -737,14 +737,13 @@ function updateProgress(slug) {
 
 function resetDone() {
   if (!currentSlot) return;
-  const builtin = flatBuiltin(currentSlot);
-  const custom = loadCustom(currentSlot);
-  const removed = loadRemoved(currentSlot);
-  builtin.forEach((_, i) => {
-    if (!removed.has(i)) delete doneState[`${currentSlot}-${i}`];
+  Object.keys(doneState).forEach((k) => {
+    if (k.startsWith(`${currentSlot}-`)) delete doneState[k];
   });
-  custom.forEach((_, i) => delete doneState[`${currentSlot}-c${i}`]);
   saveDoneState();
+  localStorage.removeItem(`${CONFIG.bodyPart}-custom-${currentSlot}`);
+  localStorage.removeItem(`${CONFIG.bodyPart}-removed-${currentSlot}`);
+  localStorage.removeItem(`${CONFIG.bodyPart}-order-${currentSlot}`);
   renderExercises(currentSlot);
   updateProgress(currentSlot);
 }

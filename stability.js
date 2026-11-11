@@ -59,7 +59,7 @@ function renderResults() {
   var html = '<div class="results-count">' + results.length + ' exercises</div>';
   results.forEach(function(ex) {
     html += '<div class="result-item" onclick="addToSession(' + JSON.stringify(ex).replace(/"/g, '&quot;') + ')">'
-      + '<span class="result-name">' + ex.name + '</span>'
+      + '<span class="result-name">' + ex.name + videoLink(ex.name) + '</span>'
       + '<span class="result-muscle">' + (currentFilter !== 'All' && [].concat(ex.bodyPart).indexOf(currentFilter) !== -1 ? currentFilter : [].concat(ex.bodyPart)[0]).toUpperCase() + '</span>'
       + '<button class="result-add" aria-label="add">+</button>'
       + '</div>';
@@ -84,13 +84,51 @@ function addToSession(ex) {
   updateBuilderProgress();
 }
 
+var LAST_KEY = 'kinetic-routine-last';
+
+function localDay(d) {
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
+function readLastDone() {
+  try { return JSON.parse(localStorage.getItem(LAST_KEY) || '{}'); } catch (e) { return {}; }
+}
+
+function lastDoneLabel(day) {
+  if (!day) return '';
+  var parts = day.split('-').map(Number);
+  var then = new Date(parts[0], parts[1] - 1, parts[2]);
+  var now = new Date();
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var days = Math.round((today - then) / 86400000);
+  if (days <= 0) return 'done today';
+  if (days === 1) return 'done yesterday';
+  return 'done ' + days + ' days ago';
+}
+
+function markRoutineDone() {
+  var name = null;
+  try { name = localStorage.getItem(ROUTINE_KEY); } catch (e) {}
+  if (!name || !(window.ROUTINES || []).some(function(r) { return r.name === name; })) return;
+  var last = readLastDone();
+  var today = localDay(new Date());
+  if (last[name] === today) return;
+  last[name] = today;
+  try { localStorage.setItem(LAST_KEY, JSON.stringify(last)); } catch (e) {}
+  renderRoutines();
+}
+
 function renderRoutines() {
   var el = document.getElementById('routines');
   var routines = window.ROUTINES || [];
+  var last = readLastDone();
   el.innerHTML = routines.map(function(r, i) {
+    var when = lastDoneLabel(last[r.name]);
     return '<button type="button" class="routine-card" onclick="loadRoutine(' + i + ')">'
       + '<span class="routine-name">' + r.name + '</span>'
-      + '<span class="routine-count">' + r.exercises.length + ' exercises</span>'
+      + '<span class="routine-count">' + r.exercises.length + ' exercises'
+      + (when ? '<span class="routine-last">' + when + '</span>' : '')
+      + '</span>'
       + '</button>';
   }).join('');
 }
@@ -160,6 +198,7 @@ function toggleDone(id) {
   var key = 'builder-' + id;
   doneState[key] = !doneState[key];
   saveDoneState();
+  if (doneState[key]) markRoutineDone();
   var exEl = document.getElementById('ex-builder-' + id);
   if (exEl) exEl.classList.toggle('done', doneState[key]);
   updateBuilderProgress();
@@ -225,12 +264,12 @@ function renderSession() {
       + '<div class="ex-head" onclick="toggleDone(' + item.id + ')">'
       + '<span class="drag-handle" aria-label="drag">⠿</span>'
       + '<span class="ex-num">' + num + '</span>'
-      + '<span class="ex-name">' + item.name + '</span>'
+      + '<span class="ex-name">' + item.name + videoLink(item.name) + '</span>'
       + '<span class="ex-spec" onclick="event.stopPropagation();editSpec(' + item.id + ')">' + item.spec + '</span>'
       + '<button class="ex-delete-btn" onclick="event.stopPropagation();deleteSessionItem(' + item.id + ')" aria-label="remove">×</button>'
       + '<button class="ex-done-btn" aria-label="mark done">✓</button>'
       + '</div>'
-      + (item.notes ? '<div class="ex-notes">' + item.notes + '</div>' : '')
+      + (cueFor(item.name, item.notes) ? '<div class="ex-notes">' + cueFor(item.name, item.notes) + '</div>' : '')
       + '</div>'
       + '</div>';
   });
