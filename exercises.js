@@ -250,6 +250,8 @@ window.EXERCISES = [
   { name: "Quadruped Thoracic Rotation",    muscle: "Stability", bodyPart: "Posture",   equipment: "Bodyweight", spec: "3×10 / side · hand behind head" },
   { name: "Face Pull (posture)",            muscle: "Stability", bodyPart: "Posture",   equipment: "Band",       spec: "3×20 · external rotation at end" },
   { name: "Cervical Side Bend Stretch",     muscle: "Stability", bodyPart: "Posture",   equipment: "Bodyweight", spec: "3×30s / side · ear to shoulder" },
+  { name: "Levator Scapulae Stretch",       muscle: "Stability", bodyPart: "Posture",   equipment: "Bodyweight", spec: "2–3×20–30s / side" },
+  { name: "Thread the Needle",              muscle: "Stability", bodyPart: "Posture",   equipment: "Bodyweight", spec: "10 / side · slow" },
   { name: "Seated Row (light, scap focus)", muscle: "Stability", bodyPart: "Posture",   equipment: "Band",       spec: "3×15 · initiate with scapulae" },  { name: "Push-up Plus",                   muscle: "Stability", bodyPart: "Shoulder", equipment: "Bodyweight", spec: "2×10–15 · push floor away at top" },
   { name: "Wall Slide with Reach",          muscle: "Stability", bodyPart: "Shoulder", equipment: "Bodyweight", spec: "2×10 · forearms on wall" },
   { name: "Sleeper Stretch",                muscle: "Stability", bodyPart: "Shoulder", equipment: "Bodyweight", spec: "30s / side · gentle" },

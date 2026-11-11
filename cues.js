@@ -241,5 +241,7 @@ window.CUES = {
   "Machine Bicep Curls": "Line elbows up with the pivot. Curl smoothly and control the return.",
   "Seated Leg Press": "Feet mid-platform, back on pad. Lower under control and stop short of locking the knees.",
   "Wrist Curls (forearm)": "Forearms on thighs. Curl wrists up and lower to a full stretch, slowly.",
-  "Abs Circuit": "Move between exercises with control. Keep the lower back neutral and stop when form breaks."
+  "Abs Circuit": "Move between exercises with control. Keep the lower back neutral and stop when form breaks.",
+  "Levator Scapulae Stretch": "Turn head 45 degrees and look toward the armpit. Gently pull the head down. No forcing.",
+  "Thread the Needle": "On hands and knees, slide one arm under the body and rotate the upper back. Hips stay still."
 };

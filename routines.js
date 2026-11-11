@@ -94,4 +94,39 @@ window.ROUTINES = [
       },
     ],
   },
+  {
+    name: "Neck relief",
+    exercises: [
+      {
+        name: "Cervical Side Bend Stretch",
+        spec: "2–3×20–30s / side",
+        notes: "Upper trap stretch. Tilt ear to shoulder and add gentle pressure with the same-side hand.",
+      },
+      {
+        name: "Levator Scapulae Stretch",
+        spec: "2–3×20–30s / side",
+        notes: "Turn head 45° and look down toward the armpit. Gently pull the head down.",
+      },
+      {
+        name: "Doorway Chest Stretch",
+        spec: "2–3×20–30s",
+        notes: "Forearms on the door frame, step through. Lean, don't shrug.",
+      },
+      {
+        name: "Chin Tuck",
+        spec: "10 · 3s hold",
+        notes: "Pull the chin straight back, like making a double chin.",
+      },
+      {
+        name: "Cat-Cow",
+        spec: "10 slow",
+        notes: "On hands and knees, alternate rounding and arching the back.",
+      },
+      {
+        name: "Thread the Needle",
+        spec: "10 / side · slow",
+        notes: "Slide one arm under the body and rotate the upper back.",
+      },
+    ],
+  },
 ];
