@@ -2,7 +2,11 @@ window.ROUTINES = [
   {
     name: "Morning",
     exercises: [
-      { name: "Neck Work", spec: "3 × 15 each" },
+      {
+        name: "Neck Harness Extension",
+        spec: "3 × 15",
+        notes: "Neck harness with straps. Extend the head back against the load, slow and controlled. No jerking.",
+      },
       { name: "Reverse Curls", spec: "3 × 5 each" },
       { name: "Push-ups", spec: "100" },
       { name: "Pull-ups", spec: "3 × max" },
