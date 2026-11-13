@@ -3,232 +3,158 @@ const CONFIG = {
   bodyPart: "knee",
 };
 
-const REHAB_A = {
-  name: "Rehab A",
-  isRehab: true,
-  exercises: [
-    {
-      name: "Step-ups (low box)",
-      spec: "3×10/leg",
-      notes:
-        "Drive through heel of working leg. Avoid pushing off back foot — it should barely touch the box.",
-    },
-    {
-      name: "Split squats (short stride)",
-      spec: "3×8/leg",
-      notes:
-        "Torso upright, front shin vertical, back heel raised with toes on the floor. Feet staggered on a diagonal — not inline. Lower straight down.",
-    },
-    {
-      name: "Wall sits (60–70°)",
-      spec: "3×30–45s",
-      notes:
-        "Thighs parallel or just above. Press entire back flat into wall. Keep weight in heels, not toes.",
-    },
-    {
-      name: "TKE",
-      spec: "3×15",
-      notes:
-        "Squeeze quad fully at end range. Stop just short of lockout snap — no hyperextension.",
-    },
-    {
-      name: "Calf raises",
-      spec: "3x15",
-      notes:
-        "Full range: drop heel below step level, rise all the way up. Slow and controlled on the way down.",
-    },
-  ],
-  previousLabel: "Phase 1, before 5 May",
-  previous: [
-    { name: "Quad Sets", spec: "3×10 · 5–10s hold", notes: "Press back of knee into floor. No leg lift." },
-    { name: "TKE (band)", spec: "3×12–15 · slow lockout", notes: "Slow, full lockout — avoid snapping into extension." },
-    { name: "Straight Leg Raises", spec: "3×10–12 · 2s up/down", notes: "Lock knee fully before lifting. Toes pointed up." },
-    { name: "Glute Bridge", spec: "3×12–15 · 2s squeeze", notes: "Drive through heels. Do not hyperextend lower back at top." },
-    { name: "Side-Lying Hip Abduction", spec: "2–3×12–15", notes: "Keep pelvis stacked, do not rotate forward during lift." },
-  ],
-};
-
-const REHAB_B = {
-  name: "Rehab B",
-  isRehab: true,
-  exercises: [
-    {
-      name: "Single-leg RDL",
-      spec: "3×8 / leg",
-      notes:
-        "Hinge at hip, not waist. Keep hips square — back leg floats as counterweight. Feel it in the hamstring, not the lower back.",
-    },
-    {
-      name: "Single-leg glute bridge",
-      spec: "3×10 / leg",
-      notes:
-        "Drive through heel. Keep hips level — don't let the free side drop. Squeeze at top, don't arch the lower back.",
-    },
-    {
-      name: "Side-lying abduction (slow tempo)",
-      spec: "3×12 / leg",
-      notes:
-        "Stack hips — don't let top hip roll back. 2s up, 3s down, no momentum.",
-    },
-    {
-      name: "Banded lateral walks",
-      spec: "3×12 steps each way",
-      notes:
-        "Band above knees. Stay in a quarter squat — don't stand between steps. Knees track out, don't cave.",
-    },
-    {
-      name: "Single-leg balance (knee over toe)",
-      spec: "3×30s",
-      notes:
-        "Soft knee bend tracking over second toe. Grip the floor with toes if wobbling.",
-    },
-  ],
-  previousLabel: "Phase 1, before 5 May",
-  previous: [
-    { name: "Shallow Wall Sit", spec: "4×20–30s · 30–45° only", notes: "Back flat against wall. Stop at 45° — do not push past comfort." },
-    { name: "Step-Ups (low)", spec: "3×8–10 / leg · no push-off", notes: "Lead leg only. No push-off from trailing foot." },
-    { name: "Romanian Deadlift", spec: "3×8–10 · hip-dominant", notes: "Hinge at hips, soft knee bend. Bar stays close to legs." },
-    { name: "Hamstring Curl", spec: "3×10–12" },
-    { name: "Calf Raises", spec: "3×12–15" },
-  ],
-};
-
 const SLOTS = {
-  day1: {
-    label: "Chest · Triceps · Rehab A",
-    title: "Day 1",
-    tabLabel: "Day 1",
+  mon: {
+    label: "Chest · Triceps",
+    title: "Monday",
+    tabLabel: "Mon",
     sections: [
+      {
+        name: "Warm-up",
+        exercises: [
+          { name: "Walking Lunges", spec: "3×10 / leg · 2×25 lb KB" },
+          { name: "Bulgarian Split Squat", spec: "3×10 / leg · 2×25 lb KB" },
+          { name: "Hanging Toes to Bar", spec: "3 sets" },
+        ],
+      },
       {
         name: "Chest",
         exercises: [
-          { name: "Bench Press", spec: "4×6–8" },
-          { name: "Incline Bench Press", spec: "3×8–10" },
-          { name: "Incline Dumbbell Press", spec: "3×10–12" },
-          { name: "Cable Chest Fly", spec: "3×12–15" },
-          { name: "Push-ups", spec: "100" },
+          { name: "Dips", spec: "5×20 · bodyweight" },
+          { name: "Incline Bench Press", spec: "3 sets · 135 lb, then 2 sets · 185 lb" },
+          { name: "Chest Fly", spec: "5×12 · 130 lb" },
+          { name: "Chest Press (machine)", spec: "10×10 · 130 lb" },
+        ],
+      },
+      {
+        name: "Triceps",
+        exercises: [
+          { name: "Overhead Triceps Extension", spec: "5×10 · 30 lb" },
+          { name: "Triceps Extension (machine)", spec: "3 sets · 100 lb" },
         ],
       },
       {
         name: "Arms",
         exercises: [
-          { name: "Dips", spec: "3×8–12" },
-          { name: "Triceps Pushdown (cable)", spec: "3×12–15" },
-          { name: "Overhead Triceps Extension (DB)", spec: "3×10–12" },
-          { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
-          { name: "Hammer Curls", spec: "3×10–12" },
+          { name: "Reverse Curls", spec: "3 sets · 40 lb" },
+          { name: "Hammer Curl", spec: "3 sets · 25 lb" },
         ],
       },
-      REHAB_A,
     ],
     avoid: [],
   },
-  day2: {
-    label: "Back · Biceps · Rehab A",
-    title: "Day 2",
-    tabLabel: "Day 2",
+  tue: {
+    label: "Back · Biceps",
+    title: "Tuesday",
+    tabLabel: "Tue",
     sections: [
+      {
+        name: "Warm-up",
+        exercises: [
+          { name: "Walking Lunges", spec: "3×10 / leg · 2×25 lb KB" },
+          { name: "Bulgarian Split Squat", spec: "3×10 / leg · 2×25 lb KB" },
+          { name: "Hanging Toes to Bar", spec: "3 sets" },
+        ],
+      },
       {
         name: "Back",
         exercises: [
-          { name: "Pull-ups", spec: "4 × max" },
-          { name: "Deadlift", spec: "4×4–6" },
-          { name: "Dumbbell Rows", spec: "3×8–10 / arm" },
-          { name: "Seated Cable Rows", spec: "3×10–12" },
-          { name: "Machine Rows", spec: "3×12–15" },
+          { name: "Seated Cable Row", spec: "3 sets · 130–190 lb" },
+          { name: "Chest-Supported Row", spec: "3 sets · 90–145 lb" },
+          { name: "Cable Crossover", spec: "3 sets · varied weight" },
+          { name: "Reverse Fly (machine)", spec: "3 sets · 110–130 lb" },
           { name: "Face Pulls", spec: "3×15–20" },
           { name: "Shoulder Shrugs", spec: "3×8–12 · heavy" },
           { name: "Lateral Raises", spec: "3×8–12" },
         ],
       },
       {
-        name: "Arms",
+        name: "Biceps",
         exercises: [
-          { name: "Machine Bicep Curls", spec: "3×10–12" },
-          { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
-          { name: "Hammer Curls", spec: "3×10–12" },
+          { name: "Machine Bicep Curl", spec: "3 sets · 100 lb" },
         ],
       },
-      REHAB_B,
+      {
+        name: "Arms",
+        exercises: [
+          { name: "Reverse Curls", spec: "3 sets · 40 lb" },
+          { name: "Hammer Curl", spec: "3 sets · 25 lb" },
+        ],
+      },
     ],
     avoid: [],
   },
-  day3: {
-    label: "Legs · Abs · Rehab B",
-    title: "Day 3",
-    tabLabel: "Day 3",
+  thu: {
+    label: "Legs",
+    title: "Thursday",
+    tabLabel: "Thu",
     sections: [
+      {
+        name: "Warm-up",
+        exercises: [
+          { name: "Walking Lunges", spec: "3×10 / leg · 2×25 lb KB" },
+          { name: "Bulgarian Split Squat", spec: "3×10 / leg · 2×25 lb KB" },
+          { name: "Hanging Toes to Bar", spec: "3 sets" },
+        ],
+      },
       {
         name: "Legs",
         exercises: [
-          { name: "Squat", spec: "4×6–8" },
-          { name: "Seated Leg Press", spec: "3×10–12 · moderate depth" },
-          { name: "Incline Leg Press (45°)", spec: "3×10–12" },
-          {
-            name: "Leg Extension",
-            spec: "3×12–15 · light · partial",
-            notes:
-              "Light weight only. Stop short of full extension — protect fat pad.",
-          },
-          { name: "Calf Raises", spec: "4×15–20" },
-          { name: "Leg Press Calf Press", spec: "3×15–20" },
+          { name: "Belt Squat", spec: "5 sets · 90–140 lb" },
+          { name: "Leg Press", spec: "4 sets · 180–270 lb" },
+          { name: "Leg Extension", spec: "5 sets · 110–160 lb" },
+          { name: "Standing Calf Raise", spec: "5 sets · 150–190 lb" },
+          { name: "Leg Press Calf Press", spec: "3 sets · 150 lb" },
+          { name: "Seated Hip Adductor", spec: "3 sets · 130–150 lb" },
+          { name: "Seated Hip Abductor", spec: "3 sets · 130–150 lb" },
         ],
       },
       {
         name: "Arms",
         exercises: [
-          { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
-          { name: "Hammer Curls", spec: "3×10–12" },
+          { name: "Reverse Curls", spec: "3 sets · 40 lb" },
+          { name: "Hammer Curl", spec: "3 sets · 25 lb" },
         ],
       },
-      {
-        name: "Abs",
-        exercises: [{ name: "Hanging Toes to Bar", spec: "3×10–15" }],
-      },
-      REHAB_A,
     ],
-    avoid: [
-      "Deep squats past parallel",
-      "Lunges past ~60°",
-      "Heavy / full-range leg extensions",
-      "Slant board / knees-over-toes",
-    ],
+    avoid: [],
   },
-  day4: {
-    label: "Full Body · Rehab A",
-    title: "Day 4",
-    tabLabel: "Day 4",
+  fri: {
+    label: "Calves · Chest · Back",
+    title: "Friday",
+    tabLabel: "Fri",
     sections: [
       {
-        name: "Chest",
+        name: "Warm-up",
         exercises: [
-          { name: "Chest Press (machine)", spec: "3×10–12" },
-          { name: "Cable Chest Fly", spec: "3×12–15" },
+          { name: "Walking Lunges", spec: "3×10 / leg · 2×25 lb KB" },
+          { name: "Bulgarian Split Squat", spec: "3×10 / leg · 2×25 lb KB" },
+          { name: "Hanging Toes to Bar", spec: "3 sets" },
         ],
       },
       {
-        name: "Back",
+        name: "Calves",
         exercises: [
-          { name: "Machine Rows", spec: "3×10–12" },
-          { name: "Lat Pulldown", spec: "3×10–12" },
+          { name: "Standing Calf Raise", spec: "5 sets · 150–190 lb" },
+          { name: "Leg Press Calf Press", spec: "3 sets · 150 lb" },
+        ],
+      },
+      {
+        name: "Chest and back",
+        exercises: [
+          { name: "Dips", spec: "3 sets · bodyweight" },
+          { name: "Incline Bench Press", spec: "3 sets · 135 lb" },
+          { name: "Chest-Supported Row", spec: "3 sets · 90 lb" },
+          { name: "Seated Cable Row", spec: "3 sets · 130–190 lb" },
         ],
       },
       {
         name: "Arms",
         exercises: [
-          { name: "EZ-Bar Reverse Curls", spec: "3×10–12" },
-          { name: "Hammer Curls", spec: "3×10–12" },
-          { name: "Wrist Curls (forearm)", spec: "3×15–20" },
+          { name: "Reverse Curls", spec: "3 sets · 40 lb" },
+          { name: "Hammer Curl", spec: "3 sets · 25 lb" },
         ],
       },
-      {
-        name: "Abs",
-        exercises: [
-          { name: "Abs Circuit", spec: "5 min" },
-          { name: "Hanging Toes to Bar", spec: "3×10–15" },
-        ],
-      },
-      REHAB_B,
     ],
     avoid: [],
   },
@@ -375,23 +301,6 @@ function exBlock(slug, key, displayNum, ex, isCustom, isRehab, builtinIdx) {
   </div>`;
 }
 
-function previousBlock(sec) {
-  if (!sec.previous || !sec.previous.length) return "";
-  const items = sec.previous
-    .map(
-      (ex) => `
-    <div class="ex ex-previous">
-      <div class="ex-head">
-        <span class="ex-name">${ex.name}</span>
-        <span class="ex-spec">${ex.spec}</span>
-      </div>
-      ${ex.notes ? `<div class="ex-notes">${ex.notes}</div>` : ""}
-    </div>`,
-    )
-    .join("");
-  return `<div class="previous-divider">${sec.previousLabel || "Before"}</div>${items}`;
-}
-
 function renderExercises(slug) {
   const s = SLOTS[slug];
   const custom = loadCustom(slug);
@@ -445,7 +354,6 @@ function renderExercises(slug) {
         if (secHtml) {
           html += `<div class="section-header${firstSection ? " first" : ""}">${sec.name}</div>`;
           html += secHtml;
-          html += previousBlock(sec);
           firstSection = false;
         }
       });
@@ -467,7 +375,7 @@ function renderExercises(slug) {
     }
 
     if (custom.length) {
-      html += `<div class="section-header${firstSection ? " first" : ""}">CUSTOM</div>`;
+      html += `<div class="section-header${firstSection ? " first" : ""}">Added</div>`;
       custom.forEach((ex, i) => {
         html += exBlock(slug, `${slug}-c${i}`, displayNum++, ex, true, false);
       });
@@ -529,29 +437,74 @@ function setSlot(slug) {
 
 // ─── Add / remove / reorder ────────────────────────────────────────────────────
 
+let addPick = null;
+
 function showAddForm(slug) {
+  addPick = null;
   document.getElementById("add-ex-wrap").innerHTML = `
     <div class="add-ex-form">
-      <input id="add-ex-name" class="add-ex-input" placeholder="exercise name" autocomplete="off"
-        onkeydown="if(event.key==='Enter')document.getElementById('add-ex-spec').focus()" />
-      <input id="add-ex-spec" class="add-ex-input" placeholder="sets × reps" autocomplete="off"
-        onkeydown="if(event.key==='Enter')confirmAddEx('${slug}')" />
+      <input id="add-ex-search" class="add-ex-input" placeholder="search the library" autocomplete="off"
+        oninput="renderAddResults()" />
+      <div id="add-ex-results" class="add-ex-results"></div>
+      <div class="add-ex-row">
+        <label class="add-ex-field">Sets
+          <input id="add-ex-sets" class="add-ex-input add-ex-num" inputmode="numeric" placeholder="3" autocomplete="off" />
+        </label>
+        <span class="add-ex-times">×</span>
+        <label class="add-ex-field">Reps
+          <input id="add-ex-reps" class="add-ex-input add-ex-num" inputmode="numeric" placeholder="10" autocomplete="off"
+            onkeydown="if(event.key==='Enter')confirmAddEx('${slug}')" />
+        </label>
+      </div>
       <div class="add-ex-actions">
-        <button class="add-ex-cancel" onclick="renderExercises('${slug}')">cancel</button>
-        <button class="add-ex-confirm" onclick="confirmAddEx('${slug}')">add</button>
+        <button class="add-ex-cancel" onclick="renderExercises('${slug}')">Cancel</button>
+        <button class="add-ex-confirm" onclick="confirmAddEx('${slug}')">Add</button>
       </div>
     </div>`;
-  document.getElementById("add-ex-name").focus();
+  renderAddResults();
+  document.getElementById("add-ex-search").focus();
+}
+
+function renderAddResults() {
+  const q = document.getElementById("add-ex-search").value.toLowerCase().trim();
+  const el = document.getElementById("add-ex-results");
+  if (addPick && addPick.name.toLowerCase() !== q) addPick = null;
+  if (addPick) {
+    el.innerHTML = "";
+    return;
+  }
+  const lib = window.EXERCISES || [];
+  const hits = q ? lib.filter((ex) => ex.name.toLowerCase().includes(q)).slice(0, 8) : [];
+  let html = hits
+    .map(
+      (ex) =>
+        `<button type="button" class="add-ex-option" onclick="pickAddEx(${lib.indexOf(ex)})">
+          <span>${ex.name}</span><span class="add-ex-option-spec">${ex.spec}</span>
+        </button>`,
+    )
+    .join("");
+  if (q && !hits.length) html = `<div class="add-ex-empty">Not in the library. Try another name.</div>`;
+  el.innerHTML = html;
+}
+
+function pickAddEx(i) {
+  addPick = window.EXERCISES[i];
+  document.getElementById("add-ex-search").value = addPick.name;
+  document.getElementById("add-ex-results").innerHTML = "";
+  document.getElementById("add-ex-sets").focus();
 }
 
 function confirmAddEx(slug) {
-  const name = document.getElementById("add-ex-name").value.trim();
-  const spec = document.getElementById("add-ex-spec").value.trim();
-  if (!name) return;
+  if (!addPick) {
+    document.getElementById("add-ex-search").focus();
+    return;
+  }
+  const sets = document.getElementById("add-ex-sets").value.trim();
+  const reps = document.getElementById("add-ex-reps").value.trim();
+  const spec = sets && reps ? `${sets} × ${reps}` : addPick.spec;
   const custom = loadCustom(slug);
-  custom.push({ name, spec: spec || "—" });
+  custom.push({ name: addPick.name, spec });
   saveCustom(slug, custom);
-  // append to saved order if one exists
   const saved = loadOrder(slug);
   if (saved) {
     saved.push(`${slug}-c${custom.length - 1}`);
@@ -762,4 +715,4 @@ document.title = CONFIG.title;
 renderTabs();
 updateClock();
 setInterval(updateClock, 10000);
-setSlot("day1");
+setSlot("mon");

@@ -1172,3 +1172,58 @@ html[data-theme="kinetic"] .logo {
 body.has-timer {
   padding-bottom: 96px;
 }
+
+.add-ex-results {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.add-ex-option {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  font: inherit;
+  font-size: var(--fs-sm);
+  text-align: left;
+  cursor: pointer;
+}
+
+.add-ex-option:hover {
+  border-color: var(--accent);
+}
+
+.add-ex-option-spec,
+.add-ex-empty {
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+
+.add-ex-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.add-ex-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+
+.add-ex-num {
+  font-size: 16px;
+}
+
+.add-ex-times {
+  padding-bottom: 8px;
+  color: var(--muted);
+}

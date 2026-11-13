@@ -245,6 +245,23 @@ function resetBuilderDone() {
 
 // ─── Session render ───────────────────────────────────────────────────────────
 
+function previousHtml() {
+  var name = null;
+  try { name = localStorage.getItem(ROUTINE_KEY); } catch (e) {}
+  var routine = (window.ROUTINES || []).find(function(r) { return r.name === name; });
+  if (!routine || !routine.previous || !routine.previous.length) return '';
+  var items = routine.previous.map(function(ex) {
+    return '<div class="ex ex-previous">'
+      + '<div class="ex-head">'
+      + '<span class="ex-name">' + ex.name + '</span>'
+      + '<span class="ex-spec">' + ex.spec + '</span>'
+      + '</div>'
+      + (ex.notes ? '<div class="ex-notes">' + ex.notes + '</div>' : '')
+      + '</div>';
+  }).join('');
+  return '<div class="previous-divider">' + (routine.previousLabel || 'Before') + '</div>' + items;
+}
+
 function renderSession() {
   var el = document.getElementById('session-list');
   if (session.length === 0) {
@@ -274,7 +291,7 @@ function renderSession() {
       + '</div>';
   });
 
-  el.innerHTML = html;
+  el.innerHTML = html + previousHtml();
 
   document.querySelectorAll('#session-list .block[data-id]').forEach(function(block) {
     block.addEventListener('dragstart', onDragStart);
