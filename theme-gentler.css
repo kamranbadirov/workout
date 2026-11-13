@@ -373,19 +373,19 @@ html[data-theme="gentler"] .routine-card {
   box-shadow: var(--lift);
 }
 
-html[data-theme="gentler"] .routine-card:nth-child(4n + 1) {
+html[data-theme="gentler"] .routine-cell:nth-child(4n + 1) .routine-card {
   background: #e7e0ff;
 }
 
-html[data-theme="gentler"] .routine-card:nth-child(4n + 2) {
+html[data-theme="gentler"] .routine-cell:nth-child(4n + 2) .routine-card {
   background: #d9f3e8;
 }
 
-html[data-theme="gentler"] .routine-card:nth-child(4n + 3) {
+html[data-theme="gentler"] .routine-cell:nth-child(4n + 3) .routine-card {
   background: #ffe4ec;
 }
 
-html[data-theme="gentler"] .routine-card:nth-child(4n + 4) {
+html[data-theme="gentler"] .routine-cell:nth-child(4n + 4) .routine-card {
   background: #fff0d6;
 }
 
@@ -632,26 +632,18 @@ html[data-theme="gentler"][data-mode="dark"] .ex.done .ex-spec,
 html[data-theme="gentler"][data-mode="dark"] .ex.done .ex-notes {
   color: #64b896;
 }
-html[data-theme="gentler"][data-mode="dark"] .routine-card:nth-child(4n + 1),
+html[data-theme="gentler"][data-mode="dark"] .routine-cell:nth-child(4n + 1) .routine-card,
 html[data-theme="gentler"][data-mode="dark"] .landing-card:nth-child(1) {
   background: #2c2548;
 }
-html[data-theme="gentler"][data-mode="dark"] .routine-card:nth-child(4n + 2),
+html[data-theme="gentler"][data-mode="dark"] .routine-cell:nth-child(4n + 2) .routine-card,
 html[data-theme="gentler"][data-mode="dark"] .landing-card:nth-child(3) {
   background: #183329;
 }
-html[data-theme="gentler"][data-mode="dark"] .routine-card:nth-child(4n + 3),
+html[data-theme="gentler"][data-mode="dark"] .routine-cell:nth-child(4n + 3) .routine-card,
 html[data-theme="gentler"][data-mode="dark"] .landing-card:nth-child(2) {
   background: #3a1e2a;
 }
-html[data-theme="gentler"][data-mode="dark"] .routine-card:nth-child(4n + 4) {
-  background: #352a17;
-}
-
-html[data-theme="gentler"] .landing-card:nth-child(4) {
-  background: #fff0d6;
-}
-
-html[data-theme="gentler"][data-mode="dark"] .landing-card:nth-child(4) {
+html[data-theme="gentler"][data-mode="dark"] .routine-cell:nth-child(4n + 4) .routine-card {
   background: #352a17;
 }

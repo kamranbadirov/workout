@@ -118,19 +118,67 @@ function markRoutineDone() {
   renderRoutines();
 }
 
+var PIN_KEY = 'kinetic-routine-pins';
+var showAllRoutines = false;
+
+function readPins() {
+  try {
+    var raw = localStorage.getItem(PIN_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return (window.ROUTINES || []).filter(function(r) { return r.pinned; }).map(function(r) { return r.name; });
+}
+
+function togglePin(i) {
+  var name = window.ROUTINES[i].name;
+  var pins = readPins();
+  var at = pins.indexOf(name);
+  if (at === -1) pins.push(name); else pins.splice(at, 1);
+  try { localStorage.setItem(PIN_KEY, JSON.stringify(pins)); } catch (e) {}
+  renderRoutines();
+}
+
+function toggleShowAll() {
+  showAllRoutines = !showAllRoutines;
+  renderRoutines();
+}
+
 function renderRoutines() {
   var el = document.getElementById('routines');
   var routines = window.ROUTINES || [];
   var last = readLastDone();
-  el.innerHTML = routines.map(function(r, i) {
+  var pins = readPins();
+  var shown = showAllRoutines
+    ? routines
+    : routines.filter(function(r) { return pins.indexOf(r.name) !== -1; });
+  if (!shown.length) shown = routines;
+
+  el.innerHTML = shown.map(function(r) {
+    var i = routines.indexOf(r);
     var when = lastDoneLabel(last[r.name]);
-    return '<button type="button" class="routine-card" onclick="loadRoutine(' + i + ')">'
+    var isPinned = pins.indexOf(r.name) !== -1;
+    return '<div class="routine-cell">'
+      + '<button type="button" class="routine-card" onclick="loadRoutine(' + i + ')">'
       + '<span class="routine-name">' + r.name + '</span>'
       + '<span class="routine-count">' + r.exercises.length + ' exercises'
       + (when ? '<span class="routine-last">' + when + '</span>' : '')
       + '</span>'
-      + '</button>';
+      + '</button>'
+      + (showAllRoutines
+          ? '<button type="button" class="routine-pin' + (isPinned ? ' pinned' : '') + '"'
+            + ' onclick="togglePin(' + i + ')" aria-pressed="' + (isPinned ? 'true' : 'false') + '"'
+            + ' aria-label="' + (isPinned ? 'Unpin ' : 'Pin ') + r.name + '">'
+            + (isPinned ? '\u2605' : '\u2606') + '</button>'
+          : '')
+      + '</div>';
   }).join('');
+
+  var toggle = document.getElementById('routines-toggle');
+  if (toggle) {
+    toggle.textContent = showAllRoutines
+      ? 'Show less'
+      : 'Show all routines (' + routines.length + ')';
+  }
 }
 
 function loadRoutine(i) {

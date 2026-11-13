@@ -1330,3 +1330,71 @@ body.has-timer {
   padding: 12px 16px;
   border-top: 1px solid var(--line);
 }
+
+.routine-cell {
+  position: relative;
+  display: flex;
+}
+
+.routine-cell .routine-card {
+  flex: 1;
+}
+
+.routine-pin {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.routine-pin.pinned {
+  color: var(--accent);
+}
+
+.routines-toggle,
+.archive-link {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--muted);
+  font: inherit;
+  font-size: var(--fs-sm);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.routines-toggle:hover,
+.archive-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.archive-link {
+  margin-top: 28px;
+  border-style: dashed;
+}
+
+.page-title {
+  font-size: 24px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.routine-cell:has(.routine-pin) .routine-card {
+  padding-right: 46px;
+}

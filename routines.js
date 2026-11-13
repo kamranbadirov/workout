@@ -1,6 +1,7 @@
 window.ROUTINES = [
   {
     name: "Morning",
+    pinned: true,
     exercises: [
       {
         name: "Neck Harness Extension",
@@ -25,6 +26,7 @@ window.ROUTINES = [
   },
   {
     name: "Scap maintenance",
+    pinned: true,
     exercises: [
       {
         name: "Push-up Plus",
@@ -50,6 +52,7 @@ window.ROUTINES = [
   },
   {
     name: "Desk reset",
+    pinned: true,
     exercises: [
       {
         name: "Wall Slide with Reach",
@@ -70,6 +73,7 @@ window.ROUTINES = [
   },
   {
     name: "Evening stretch",
+    pinned: true,
     exercises: [
       {
         name: "Doorway Chest Stretch",
@@ -131,114 +135,6 @@ window.ROUTINES = [
         spec: "10 / side · slow",
         notes: "Slide one arm under the body and rotate the upper back.",
       },
-    ],
-  },
-  {
-    name: "Knee rehab A",
-    exercises: [
-      {
-        name: "Step-ups (low box)",
-        spec: "3×10/leg",
-        notes: "Drive through heel of working leg. Avoid pushing off back foot — it should barely touch the box.",
-      },
-      {
-        name: "Split squats (short stride)",
-        spec: "3×8/leg",
-        notes: "Torso upright, front shin vertical, back heel raised with toes on the floor. Feet staggered on a diagonal — not inline. Lower straight down.",
-      },
-      {
-        name: "Wall sits (60–70°)",
-        spec: "3×30–45s",
-        notes: "Thighs parallel or just above. Press entire back flat into wall. Keep weight in heels, not toes.",
-      },
-      {
-        name: "TKE",
-        spec: "3×15",
-        notes: "Squeeze quad fully at end range. Stop just short of lockout snap — no hyperextension.",
-      },
-      {
-        name: "Calf raises",
-        spec: "3x15",
-        notes: "Full range: drop heel below step level, rise all the way up. Slow and controlled on the way down.",
-      },
-    ],
-    previousLabel: "Phase 1, before 5 May",
-    previous: [
-      {
-        name: "Quad Sets",
-        spec: "3×10 · 5–10s hold",
-        notes: "Press back of knee into floor. No leg lift.",
-      },
-      {
-        name: "TKE (band)",
-        spec: "3×12–15 · slow lockout",
-        notes: "Slow, full lockout — avoid snapping into extension.",
-      },
-      {
-        name: "Straight Leg Raises",
-        spec: "3×10–12 · 2s up/down",
-        notes: "Lock knee fully before lifting. Toes pointed up.",
-      },
-      {
-        name: "Glute Bridge",
-        spec: "3×12–15 · 2s squeeze",
-        notes: "Drive through heels. Do not hyperextend lower back at top.",
-      },
-      {
-        name: "Side-Lying Hip Abduction",
-        spec: "2–3×12–15",
-        notes: "Keep pelvis stacked, do not rotate forward during lift.",
-      },
-    ],
-  },
-  {
-    name: "Knee rehab B",
-    exercises: [
-      {
-        name: "Single-leg RDL",
-        spec: "3×8 / leg",
-        notes: "Hinge at hip, not waist. Keep hips square — back leg floats as counterweight. Feel it in the hamstring, not the lower back.",
-      },
-      {
-        name: "Single-leg glute bridge",
-        spec: "3×10 / leg",
-        notes: "Drive through heel. Keep hips level — don't let the free side drop. Squeeze at top, don't arch the lower back.",
-      },
-      {
-        name: "Side-lying abduction (slow tempo)",
-        spec: "3×12 / leg",
-        notes: "Stack hips — don't let top hip roll back. 2s up, 3s down, no momentum.",
-      },
-      {
-        name: "Banded lateral walks",
-        spec: "3×12 steps each way",
-        notes: "Band above knees. Stay in a quarter squat — don't stand between steps. Knees track out, don't cave.",
-      },
-      {
-        name: "Single-leg balance (knee over toe)",
-        spec: "3×30s",
-        notes: "Soft knee bend tracking over second toe. Grip the floor with toes if wobbling.",
-      },
-    ],
-    previousLabel: "Phase 1, before 5 May",
-    previous: [
-      {
-        name: "Shallow Wall Sit",
-        spec: "4×20–30s · 30–45° only",
-        notes: "Back flat against wall. Stop at 45° — do not push past comfort.",
-      },
-      {
-        name: "Step-Ups (low)",
-        spec: "3×8–10 / leg · no push-off",
-        notes: "Lead leg only. No push-off from trailing foot.",
-      },
-      {
-        name: "Romanian Deadlift",
-        spec: "3×8–10 · hip-dominant",
-        notes: "Hinge at hips, soft knee bend. Bar stays close to legs.",
-      },
-      { name: "Hamstring Curl", spec: "3×10–12" },
-      { name: "Calf Raises", spec: "3×12–15" },
     ],
   },
   {

@@ -79,6 +79,57 @@ window.PLANS = [
       },
     ],
   },
+  {
+    name: "Knee rehab",
+    summary:
+      "Two sessions, A and B. Phase 2 replaced the phase 1 drills on 5 May 2026: deeper knee angles, single-leg work and hip stability.",
+    phases: [
+      {
+        name: "Rehab A, phase 2",
+        when: "from 5 May",
+        exercises: [
+          ["Step-ups (low box)","3×10/leg","Drive through heel of working leg. Avoid pushing off back foot — it should barely touch the box."],
+          ["Split squats (short stride)","3×8/leg","Torso upright, front shin vertical, back heel raised with toes on the floor. Feet staggered on a diagonal — not inline. Lower straight down."],
+          ["Wall sits (60–70°)","3×30–45s","Thighs parallel or just above. Press entire back flat into wall. Keep weight in heels, not toes."],
+          ["TKE","3×15","Squeeze quad fully at end range. Stop just short of lockout snap — no hyperextension."],
+          ["Calf raises","3x15","Full range: drop heel below step level, rise all the way up. Slow and controlled on the way down."],
+        ],
+      },
+      {
+        name: "Rehab B, phase 2",
+        when: "from 5 May",
+        exercises: [
+          ["Single-leg RDL","3×8 / leg","Hinge at hip, not waist. Keep hips square — back leg floats as counterweight. Feel it in the hamstring, not the lower back."],
+          ["Single-leg glute bridge","3×10 / leg","Drive through heel. Keep hips level — don't let the free side drop. Squeeze at top, don't arch the lower back."],
+          ["Side-lying abduction (slow tempo)","3×12 / leg","Stack hips — don't let top hip roll back. 2s up, 3s down, no momentum."],
+          ["Banded lateral walks","3×12 steps each way","Band above knees. Stay in a quarter squat — don't stand between steps. Knees track out, don't cave."],
+          ["Single-leg balance (knee over toe)","3×30s","Soft knee bend tracking over second toe. Grip the floor with toes if wobbling."],
+        ],
+      },
+      {
+        name: "Rehab A, phase 1",
+        when: "to 5 May",
+        exercises: [
+          ["Quad Sets","3×10 · 5–10s hold","Press back of knee into floor. No leg lift."],
+          ["TKE (band)","3×12–15 · slow lockout","Slow, full lockout — avoid snapping into extension."],
+          ["Straight Leg Raises","3×10–12 · 2s up/down","Lock knee fully before lifting. Toes pointed up."],
+          ["Glute Bridge","3×12–15 · 2s squeeze","Drive through heels. Do not hyperextend lower back at top."],
+          ["Side-Lying Hip Abduction","2–3×12–15","Keep pelvis stacked, do not rotate forward during lift."],
+        ],
+      },
+      {
+        name: "Rehab B, phase 1",
+        when: "to 5 May",
+        exercises: [
+          ["Shallow Wall Sit","4×20–30s · 30–45° only","Back flat against wall. Stop at 45° — do not push past comfort."],
+          ["Step-Ups (low)","3×8–10 / leg · no push-off","Lead leg only. No push-off from trailing foot."],
+          ["Romanian Deadlift","3×8–10 · hip-dominant","Hinge at hips, soft knee bend. Bar stays close to legs."],
+          ["Hamstring Curl","3×10–12",""],
+          ["Calf Raises","3×12–15",""],
+        ],
+      },
+    ],
+  },
 ];
 
 (function () {
@@ -87,7 +138,7 @@ window.PLANS = [
   }
 
   var html = window.PLANS.map(function (plan) {
-    var rules = plan.rules
+    var rules = (plan.rules || [])
       .map(function (r) {
         return '<div class="plan-rule"><span class="plan-rule-name">' + esc(r[0]) + "</span><span>" + esc(r[1]) + "</span></div>";
       })
@@ -98,7 +149,8 @@ window.PLANS = [
           .map(function (ex) {
             return (
               '<div class="plan-row"><div class="plan-row-head"><span class="plan-row-name">' + esc(ex[0]) +
-              '</span><span class="plan-row-spec">' + esc(ex[1]) + '</span></div><div class="plan-row-note">' + esc(ex[2]) + "</div></div>"
+              '</span><span class="plan-row-spec">' + esc(ex[1]) + "</span></div>" +
+              (ex[2] ? '<div class="plan-row-note">' + esc(ex[2]) + "</div>" : "") + "</div>"
             );
           })
           .join("");
@@ -110,8 +162,8 @@ window.PLANS = [
       })
       .join("");
     return (
-      '<h1 class="plan-title">' + esc(plan.name) + '</h1><p class="plan-summary">' + esc(plan.summary) + "</p>" +
-      '<div class="plan-rules">' + rules + "</div>" + phases
+      '<h2 class="plan-title">' + esc(plan.name) + '</h2><p class="plan-summary">' + esc(plan.summary) + "</p>" +
+      (rules ? '<div class="plan-rules">' + rules + "</div>" : "") + phases
     );
   }).join("");
   document.getElementById("plans").innerHTML = html;
