@@ -647,3 +647,11 @@ html[data-theme="gentler"][data-mode="dark"] .landing-card:nth-child(2) {
 html[data-theme="gentler"][data-mode="dark"] .routine-card:nth-child(4n + 4) {
   background: #352a17;
 }
+
+html[data-theme="gentler"] .landing-card:nth-child(4) {
+  background: #fff0d6;
+}
+
+html[data-theme="gentler"][data-mode="dark"] .landing-card:nth-child(4) {
+  background: #352a17;
+}

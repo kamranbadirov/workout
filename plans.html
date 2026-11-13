@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kinetic — Plans</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="theme-things.css" />
+    <link rel="stylesheet" href="theme-gentler.css" />
+    <script src="theme.js"></script>
+    <link rel="icon" type="image/x-icon" href="kinetic.png" />
+
+  </head>
+  <body>
+    <header>
+      <a href="index.html" class="back-btn">←</a>
+      <button type="button" class="logo" data-mode-toggle title="Toggle dark mode">Kinetic</button>
+      <div class="header-end">
+        <div class="theme-switch" role="group" aria-label="Theme">
+          <button type="button" data-theme-option="gentler">Gentler</button>
+          <button type="button" data-theme-option="kinetic">Kinetic</button>
+          <button type="button" data-theme-option="things">Things</button>
+        </div>
+        <div id="clock">--:--</div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div id="plans"></div>
+    </div>
+
+    <script src="plans.js"></script>
+  </body>
+</html>
