@@ -25,6 +25,42 @@ window.ROUTINES = [
     ],
   },
   {
+    name: "Serratus",
+    pinned: true,
+    exercises: [
+      {
+        name: "Serratus Punch",
+        spec: "3×12 / side",
+        notes:
+          "Lie on your back, arm straight up. Reach the knuckles at the ceiling until the shoulder blade lifts off the floor.",
+      },
+      {
+        name: "Quadruped Scapular Protraction",
+        spec: "3×10",
+        notes:
+          "Hands and knees, elbows straight. Push the floor away so the upper back rounds. Same feel as the punch.",
+      },
+      {
+        name: "Wall Slide with Reach",
+        spec: "2×10",
+        notes:
+          "Forearms on the wall. Slide up and reach through the wall. Ribs down, no shrug.",
+      },
+      {
+        name: "Push-up Plus",
+        spec: "2×10–15",
+        notes:
+          "At the top, push the floor away a little more. End the set when the blade starts to wing, not at the rep count.",
+      },
+      {
+        name: "External Rotation (band)",
+        spec: "2×12–15",
+        notes:
+          "Elbow glued to the ribs. Rotate the forearm outward against a light band.",
+      },
+    ],
+  },
+  {
     name: "Scap maintenance",
     pinned: true,
     exercises: [
@@ -73,7 +109,6 @@ window.ROUTINES = [
   },
   {
     name: "Evening stretch",
-    pinned: true,
     exercises: [
       {
         name: "Doorway Chest Stretch",

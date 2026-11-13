@@ -264,5 +264,7 @@ window.CUES = {
   "Hip Abductor & Adductor": "Sit tall, back on the pad. Move slowly both ways. No bouncing at the end range.",
   "Belt Squat": "Belt on the hips, chest tall. Sit down under control to a pain-free depth. Knees track over toes.",
   "Seated Hip Adductor": "Sit tall, back on the pad. Squeeze the knees together slowly and return with control.",
-  "Seated Hip Abductor": "Sit tall, back on the pad. Push the knees apart slowly and return with control."
+  "Seated Hip Abductor": "Sit tall, back on the pad. Push the knees apart slowly and return with control.",
+  "Quadruped Scapular Protraction": "On hands and knees, elbows straight. Push the floor away so the upper back rounds. No shrugging.",
+  "Standing Band Punch": "Band anchored behind you. Punch forward and hold one second. Reach the shoulder blade, do not shrug."
 };

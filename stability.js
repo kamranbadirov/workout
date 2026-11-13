@@ -119,14 +119,39 @@ function markRoutineDone() {
 }
 
 var PIN_KEY = 'kinetic-routine-pins';
+var PIN_VERSION_KEY = 'kinetic-routine-pins-version';
+var PIN_VERSION = 2;
 var showAllRoutines = false;
 
-function readPins() {
+function readJson(key) {
   try {
-    var raw = localStorage.getItem(PIN_KEY);
-    if (raw) return JSON.parse(raw);
+    return JSON.parse(localStorage.getItem(key) || 'null');
+  } catch (e) {
+    return null;
+  }
+}
+
+function writeJson(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
   } catch (e) {}
-  return (window.ROUTINES || []).filter(function(r) { return r.pinned; }).map(function(r) { return r.name; });
+}
+
+function defaultPins() {
+  return (window.ROUTINES || [])
+    .filter(function(r) { return r.pinned; })
+    .map(function(r) { return r.name; });
+}
+
+// Pins start as the routines marked pinned in routines.js. Raising
+// PIN_VERSION resets every device to that set once.
+function readPins() {
+  var saved = readJson(PIN_KEY);
+  if (saved && readJson(PIN_VERSION_KEY) === PIN_VERSION) return saved;
+  var pins = defaultPins();
+  writeJson(PIN_KEY, pins);
+  writeJson(PIN_VERSION_KEY, PIN_VERSION);
+  return pins;
 }
 
 function togglePin(i) {
@@ -134,7 +159,7 @@ function togglePin(i) {
   var pins = readPins();
   var at = pins.indexOf(name);
   if (at === -1) pins.push(name); else pins.splice(at, 1);
-  try { localStorage.setItem(PIN_KEY, JSON.stringify(pins)); } catch (e) {}
+  writeJson(PIN_KEY, pins);
   renderRoutines();
 }
 

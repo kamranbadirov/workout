@@ -254,6 +254,8 @@ window.EXERCISES = [
   { name: "Thread the Needle",              muscle: "Stability", bodyPart: "Posture",   equipment: "Bodyweight", spec: "10 / side · slow" },
   { name: "Seated Row (light, scap focus)", muscle: "Stability", bodyPart: "Posture",   equipment: "Band",       spec: "3×15 · initiate with scapulae" },  { name: "Push-up Plus",                   muscle: "Stability", bodyPart: "Shoulder", equipment: "Bodyweight", spec: "2×10–15 · push floor away at top" },
   { name: "Wall Slide with Reach",          muscle: "Stability", bodyPart: "Shoulder", equipment: "Bodyweight", spec: "2×10 · forearms on wall" },
+  { name: "Quadruped Scapular Protraction", muscle: "Stability", bodyPart: "Shoulder", equipment: "Bodyweight", spec: "3×10 · elbows straight" },
+  { name: "Standing Band Punch",            muscle: "Stability", bodyPart: "Shoulder", equipment: "Band",       spec: "3×10–12 / side" },
   { name: "Sleeper Stretch",                muscle: "Stability", bodyPart: "Shoulder", equipment: "Bodyweight", spec: "30s / side · gentle" },
   { name: "Child's Pose with Lat Reach",    muscle: "Stability", bodyPart: "Posture",  equipment: "Bodyweight", spec: "30–45s" },
   { name: "90/90 Hip Stretch",              muscle: "Stability", bodyPart: "Hip",      equipment: "Bodyweight", spec: "30–45s / side" },
